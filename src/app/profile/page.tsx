@@ -1,10 +1,36 @@
+"use client";
+
 import styles from "@/app/page.module.css";
+import BasicModal from "@/components/AlertModal";
+import * as UsersApi from "@/network/api/user";
+import { Button } from "@mui/material";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Profile() {
+  const [message, setMessage] = useState("sem mensagem");
+  const [open, setOpen] = useState(false);
+  async function getMessage() {
+    try {
+      const data = await UsersApi.getMessage();
+      setMessage(data.message);
+    } catch (error) {}
+  }
+
   return (
     <main className={styles.main}>
-      Profile
+      <div>Profile</div>
+      <div>{message}</div>
+      <Button
+        variant="contained"
+        onClick={() => {
+          getMessage();
+          setOpen(true);
+        }}
+      >
+        Get Message
+      </Button>
+      <BasicModal></BasicModal>
       <div className={styles.center}>
         <Image
           className={styles.logo}
