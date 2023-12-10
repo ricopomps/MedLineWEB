@@ -1,17 +1,23 @@
-import React from "react";
-import { Button, TextField, Typography, Link, Container } from "@mui/material";
 import NavbarCadastro from "@/components/NavbarCadastro";
+import { Button, Container, TextField, Typography } from "@mui/material";
 
 export default function TelaCadastroPaciente() {
   return (
     <Container component="main" maxWidth="xs">
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "1rem" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          marginTop: "1rem",
+        }}
+      >
         <Typography variant="h5" gutterBottom>
           MedLine
         </Typography>
-        <div style={{marginTop: "3rem"}}/>
-        <NavbarCadastro/>
-        <div style={{marginTop: "3rem"}}/>
+        <div style={{ marginTop: "3rem" }} />
+        <NavbarCadastro />
+        <div style={{ marginTop: "3rem" }} />
         <h1>Cadastrar como Paciente</h1>
 
         <form style={{ width: "100%", maxWidth: 400, marginTop: "1rem" }}>

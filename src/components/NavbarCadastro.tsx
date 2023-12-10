@@ -1,6 +1,6 @@
+import { AppBar, Button, Toolbar } from "@mui/material";
+import Link from "next/link";
 import React from "react";
-import { Button, Toolbar, AppBar } from "@mui/material";
-import NextLink from "next/link";
 
 const buttonStyle = {
   borderRadius: 20,
@@ -11,21 +11,21 @@ const NavbarCadastro: React.FC = () => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <NextLink href="/telaCadastroPaciente" passHref>
+        <Link href="/telaCadastroPaciente" passHref>
           <Button component="a" color="inherit" style={buttonStyle}>
             Cadastrar como Paciente
           </Button>
-        </NextLink>
-        <NextLink href="/telaCadastroMedico" passHref>
+        </Link>
+        <Link href="/telaCadastroMedico" passHref>
           <Button component="a" color="inherit" style={buttonStyle}>
             Cadastrar como Médico
           </Button>
-        </NextLink>
-        <NextLink href="/telaCadastroRecepcionista" passHref>
+        </Link>
+        <Link href="/telaCadastroRecepcionista" passHref>
           <Button component="a" color="inherit" style={buttonStyle}>
             Cadastrar como Recepcionista
           </Button>
-        </NextLink>
+        </Link>
       </Toolbar>
     </AppBar>
   );
