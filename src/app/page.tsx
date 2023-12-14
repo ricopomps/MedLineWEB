@@ -71,7 +71,6 @@ export default function Home() {
           </Link>
         </Typography>
       </div>
-      <Rodape/>
     </Container>
   );
 }
