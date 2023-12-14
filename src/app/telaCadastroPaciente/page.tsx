@@ -104,4 +104,3 @@ export default function TelaCadastroPaciente() {
     </Container>
   );
 }
-//'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning'
