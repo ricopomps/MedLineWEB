@@ -1,5 +1,6 @@
 import { Button, Container, TextField, Typography } from "@mui/material";
 import Link from "next/link";
+import Rodape from "@/components/Rodape";
 
 export default function Home() {
   return (
@@ -70,6 +71,7 @@ export default function Home() {
           </Link>
         </Typography>
       </div>
+      <Rodape/>
     </Container>
   );
 }
