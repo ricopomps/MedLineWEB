@@ -1,5 +1,6 @@
 import NavbarCadastro from "@/components/NavbarCadastro";
 import { Button, Container, TextField, Typography } from "@mui/material";
+import Link from "next/link";
 
 export default function TelaCadastroRecepcionista() {
   return (
@@ -96,6 +97,16 @@ export default function TelaCadastroRecepcionista() {
           >
             Cadastrar
           </Button>
+          <Link href="/" passHref>
+            <Button
+              variant="contained"
+              color="secondary"
+              style={{ marginTop: "1rem" }}
+              fullWidth
+            >
+              Voltar para o login
+            </Button>
+          </Link>
         </form>
       </div>
     </Container>

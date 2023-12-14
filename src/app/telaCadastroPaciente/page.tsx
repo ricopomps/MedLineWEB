@@ -1,5 +1,6 @@
 import NavbarCadastro from "@/components/NavbarCadastro";
 import { Button, Container, TextField, Typography } from "@mui/material";
+import Link from "next/link";
 
 export default function TelaCadastroPaciente() {
   return (
@@ -87,8 +88,20 @@ export default function TelaCadastroPaciente() {
           >
             Cadastrar
           </Button>
+          <Link href="/" passHref>
+            <Button
+              fullWidth
+              variant="contained"
+              color="secondary"
+              style={{ marginTop: "1rem" }}
+              component="a"
+            >
+              Voltar para o login
+            </Button>
+          </Link>
         </form>
       </div>
     </Container>
   );
 }
+//'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning'
