@@ -1,5 +1,5 @@
-import NavbarCadastro from "@/components/NavbarCadastro";
 import { Button, Container, TextField, Typography } from "@mui/material";
+import Link from "next/link";
 
 export default function TelaCadastroMedico() {
   return (
@@ -16,7 +16,7 @@ export default function TelaCadastroMedico() {
           MedLine
         </Typography>
         <div style={{ marginTop: "3rem" }} />
-        <NavbarCadastro />
+        {/* <NavbarCadastro /> */}
         <div style={{ marginTop: "3rem" }} />
         <h1>Cadastrar como Médico</h1>
 
@@ -96,6 +96,18 @@ export default function TelaCadastroMedico() {
           >
             Cadastrar
           </Button>
+
+          <Link href="/" passHref>
+            <Button
+              fullWidth
+              variant="contained"
+              color="secondary"
+              style={{ marginTop: "1rem" }}
+              component="a"
+            >
+              Voltar para o login
+            </Button>
+          </Link>
         </form>
       </div>
     </Container>
