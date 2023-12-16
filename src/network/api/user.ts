@@ -42,3 +42,8 @@ export async function signUp(credentials: SignUpCredentials) {
 export async function requestEmailVerificationCode(email: string) {
   await api.post(`${baseUrl}/verificationcode`, { email });
 }
+
+export async function getUser(userId: string) {
+  const response = await api.get<User>(`${baseUrl}/${userId}`);
+  return response.data;
+}
