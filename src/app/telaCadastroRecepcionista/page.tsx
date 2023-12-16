@@ -1,4 +1,3 @@
-import NavbarCadastro from "@/components/NavbarCadastro";
 import { Button, Container, TextField, Typography } from "@mui/material";
 import Link from "next/link";
 
@@ -17,7 +16,7 @@ export default function TelaCadastroRecepcionista() {
           MedLine
         </Typography>
         <div style={{ marginTop: "3rem" }} />
-        <NavbarCadastro />
+        {/* <NavbarCadastro /> */}
         <div style={{ marginTop: "3rem" }} />
         <h1>Cadastrar como Recepcionista</h1>
 
