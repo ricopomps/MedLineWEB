@@ -1,5 +1,6 @@
 "use client";
 
+import EnterQueueModal from "@/components/EnterQueueModal";
 import useAuthenticatedUser from "@/hooks/useAuthenticatedUser";
 import { Queue } from "@/models/queue";
 import * as QueuesApi from "@/network/api/queue";
@@ -40,6 +41,7 @@ export default function HomePage() {
       }}
     >
       HOME PAGE AFTER LOGIN
+      {user && <EnterQueueModal userId={user._id} />}
       {queues.map((queue) => (
         <Link key={queue.code} href={`/queue/${queue.code}`}>
           Fila {queue.code}
