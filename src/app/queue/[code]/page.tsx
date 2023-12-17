@@ -1,7 +1,7 @@
 import Queue from "@/components/Queue";
 import * as QueuesApi from "@/network/api/queue";
 import { NotFoundError } from "@/network/http-errors";
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -91,6 +91,7 @@ export default async function QueuePage({ params: { code } }: QueuePageProps) {
         </Link>
       </div>
       <Image src={mediline} alt="mediline" width={500} height={300}></Image>
+      <Typography>Código da fila: {queue.code}</Typography>
       <Queue queue={queue} />
     </Container>
   );

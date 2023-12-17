@@ -3,12 +3,6 @@ import api from "@/network/axiosInstance";
 
 const baseUrl = "/queues";
 
-export enum UserType {
-  pacient = "paciente",
-  recepcionista = "recepcionista",
-  doctor = "doctor",
-}
-
 export async function getQueue(code: string) {
   const response = await api.get<Queue>(`${baseUrl}/${code}`);
   return response.data;
@@ -26,5 +20,20 @@ export async function getAllQueuesCodes() {
 
 export async function getQueuesByUser(userId: string) {
   const response = await api.get<Queue[]>(`${baseUrl}/user/${userId}`);
+  return response.data;
+}
+
+export async function createQueue(doctorId: string, clinicDocument: string) {
+  const response = await api.post<Queue>(`${baseUrl}`, {
+    doctorId,
+    clinicDocument,
+  });
+  return response.data;
+}
+
+export async function getQueuesRecepcionista(clinicDocument: string) {
+  const response = await api.get<Queue[]>(
+    `${baseUrl}/recepcionista/${clinicDocument}`
+  );
   return response.data;
 }

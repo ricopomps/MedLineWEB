@@ -22,6 +22,7 @@ export interface SignUpFormData {
   password: string;
   confirmPassword: string;
   verificationCode: string;
+  clinicDocument?: string;
 }
 
 export default function SignUpPage() {
@@ -76,6 +77,8 @@ export default function SignUpPage() {
       setErrorText(null);
       if (credentials.password != credentials.confirmPassword)
         throw Error("Senhas precisam ser iguais");
+      if (userType !== UserType.recepcionista)
+        delete credentials.clinicDocument;
       const newUser = await UsersApi.signUp({ ...credentials, userType });
       mutateUser(newUser);
       toast.success("Sign In successful");
@@ -191,6 +194,17 @@ export default function SignUpPage() {
             type="password"
             fullWidth
           />
+          {userType === UserType.recepcionista && (
+            <FormInputField
+              register={register("clinicDocument", {
+                required: "Documento da clinica é obrigatório",
+              })}
+              label="Documento da clinica:"
+              formError={errors.clinicDocument}
+              required
+              fullWidth
+            />
+          )}
           <Button
             type="submit"
             fullWidth

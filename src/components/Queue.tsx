@@ -12,6 +12,7 @@ interface QueueProps {
 
 export default function Queue({ queue }: QueueProps) {
   const { user } = useAuthenticatedUser();
+
   function isUserInQueue() {
     console.log(user);
     if (user && queue.users.includes(user._id)) {
@@ -42,6 +43,7 @@ export default function Queue({ queue }: QueueProps) {
       handleError(error);
     }
   }
+
   return (
     <div>
       {" "}
