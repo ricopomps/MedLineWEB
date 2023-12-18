@@ -1,7 +1,7 @@
-import Queue from "@/components/Queue";
-import * as QueuesApi from "@/network/api/queue";
+import User from "@/components/User";
+import * as UsersApi from "@/network/api/user";
 import { NotFoundError } from "@/network/http-errors";
-import { Container, Typography } from "@mui/material";
+import { Container } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -10,13 +10,13 @@ import { notFound } from "next/navigation";
 import { cache } from "react";
 import mediline from "../../../../public/mediline.svg";
 // import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-interface QueuePageProps {
-  params: { code: string };
+interface UserPageProps {
+  params: { userId: string };
 }
 
-const getQueue = cache(async (code: string) => {
+const getUser = cache(async (userId: string) => {
   try {
-    return await QueuesApi.getQueue(code);
+    return await UsersApi.getUser(userId);
   } catch (error) {
     if (error instanceof NotFoundError) {
       notFound();
@@ -26,44 +26,22 @@ const getQueue = cache(async (code: string) => {
   }
 });
 
-// const getQueue = (code: string) =>
-//   unstable_cache(
-//     async function (code: string) {
-//       try {
-//         return await QueuesApi.getQueue(code);
-//       } catch (error) {
-//         if (error instanceof NotFoundError) {
-//           notFound();
-//         } else {
-//           throw error;
-//         }
-//       }
-//     },
-//     [code],
-//     { tags: [code] }
-//   )(code);
-
 export async function generateMetadata({
-  params: { code },
-}: QueuePageProps): Promise<Metadata> {
-  const queue = await getQueue(code);
+  params: { userId },
+}: UserPageProps): Promise<Metadata> {
+  const user = await getUser(userId);
 
   return {
-    title: `Fila - ${queue.code}`,
-    //   description: queue.summary,
+    title: `Usuário - ${user.name}`,
+    //   description: user.summary,
     //   openGraph: {
-    //     images: [{ url: queue.featuredImageUrl }],
+    //     images: [{ url: user.featuredImageUrl }],
     //   },
   };
 }
 
-// export async function generateStaticParams() {
-//   const codes = await QueuesApi.getAllQueuesCodes();
-//   return codes.map((code) => ({ code }));
-// }
-
-export default async function QueuePage({ params: { code } }: QueuePageProps) {
-  const queue = await getQueue(code);
+export default async function UserPage({ params: { userId } }: UserPageProps) {
+  const user = await getUser(userId);
 
   return (
     <Container
@@ -91,8 +69,7 @@ export default async function QueuePage({ params: { code } }: QueuePageProps) {
         </Link>
       </div>
       <Image src={mediline} alt="mediline" width={500} height={300}></Image>
-      <Typography>Código da fila: {queue.code}</Typography>
-      <Queue queue={queue} />
+      <User user={user} />
     </Container>
   );
 }
