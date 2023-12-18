@@ -112,9 +112,7 @@ export default function SignUpPage() {
         </h1>
         {errorText && <Alert>{errorText}</Alert>}
         {showVerificationCodeSentText && (
-          <Alert>
-            We sent you a verification code, please check your inbox
-          </Alert>
+          <Alert>Um código de verificação foi enviado para seu e-mail</Alert>
         )}
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -184,7 +182,7 @@ export default function SignUpPage() {
             register={register("confirmPassword", {
               required: "Senha é obrigatório",
             })}
-            placeholder="confirmar senha"
+            placeholder="Confirmar senha"
             formError={errors.confirmPassword}
             required
             type="password"
@@ -192,10 +190,11 @@ export default function SignUpPage() {
           />
           {userType === UserType.recepcionista && (
             <FormInputField
+              className={styles.inputField}
               register={register("clinicDocument", {
                 required: "Documento da clinica é obrigatório",
               })}
-              label="Documento da clinica:"
+              placeholder="Documento da clinica:"
               formError={errors.clinicDocument}
               required
               fullWidth

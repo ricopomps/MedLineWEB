@@ -1,7 +1,6 @@
 "use client";
 
 import styles from "@/app/page.module.css";
-import BasicModal from "@/components/AlertModal";
 import * as UsersApi from "@/network/api/user";
 import { Button } from "@mui/material";
 import Image from "next/image";
@@ -30,7 +29,6 @@ export default function Profile() {
       >
         Get Message
       </Button>
-      <BasicModal></BasicModal>
       <div className={styles.center}>
         <Image
           className={styles.logo}

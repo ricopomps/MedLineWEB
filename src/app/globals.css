@@ -100,9 +100,14 @@ a {
   text-decoration: none;
 }
 
-.Toastify__toast-body {
-  background-color: black;
-  color: white;
+.Toastify__toast--success {
+  background-color: #fff7d3;
+  color: green;
+}
+
+.Toastify__toast--error {
+  background-color: #fff7d3;
+  color: red;
 }
 
 @media (prefers-color-scheme: dark) {
