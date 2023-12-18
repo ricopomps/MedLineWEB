@@ -6,6 +6,7 @@ import {
   Typography,
 } from "@mui/material";
 import { FieldError, UseFormRegisterReturn } from "react-hook-form";
+import styles from "./NavbarCadastro.module.css";
 
 export interface FormInputFieldProps {
   register: UseFormRegisterReturn;
@@ -29,6 +30,8 @@ export default function FormInputField({
     <div style={{ width: "100%", marginBottom: "16px" }}>
       {label && <Typography variant="body1">{label}</Typography>}
       <TextField
+        className={styles.text}
+        {...register}
         {...props}
         variant="outlined"
         error={!!formError}

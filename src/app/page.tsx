@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import styles from "./loginPage.module.css";
 
 export default function Home() {
   const { mutateUser } = useAuthenticatedUser();
@@ -42,27 +43,10 @@ export default function Home() {
   }
 
   return (
-    <Container
-      component="main"
-      style={{
-        backgroundColor: "#FFF7D3",
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
+    <Container className={styles.container} component="main">
       {errorText && <Alert>{errorText}</Alert>}
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            marginTop: "1rem",
-          }}
-        >
+        <div className={styles.main}>
           <div style={{ marginTop: "-20px" }}>
             <Image
               src="/images/titulo_MedLine.png"
@@ -72,48 +56,39 @@ export default function Home() {
             />
           </div>
           <FormInputField
+            className={styles.inputField}
             register={register("username", { required: "CPF é obrigatório" })}
-            label="Cpf:"
             formError={errors.username}
-            style={{ backgroundColor: "#5889DC", borderRadius: "20px" }}
+            placeholder="Usuário (CPF)"
             required
             fullWidth
             autoFocus
           />
 
           <FormInputField
+            className={styles.inputField}
             register={register("password", { required: "Senha é obrigatória" })}
-            label="Senha:"
             formError={errors.password}
-            style={{ backgroundColor: "#9AD3BC", borderRadius: "20px" }}
+            placeholder="Senha"
             required
             fullWidth
             type="password"
           />
 
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            style={{ margin: "4rem auto 1rem", borderRadius: "20px" }}
-          >
+          <Button type="submit" variant="contained" color="primary">
             Entrar
           </Button>
-
-          <Typography
-            variant="body2"
-            align="center"
-            style={{ margin: "1rem 0" }}
-          >
+          <span className={styles.newClient}>
             É novo cliente? Cadastre-se clicando{" "}
             <Link
+              className={styles.link}
               href="/signUp"
               passHref
               style={{ textDecoration: "underline" }}
             >
               aqui
             </Link>
-          </Typography>
+          </span>
         </div>
       </form>
     </Container>
