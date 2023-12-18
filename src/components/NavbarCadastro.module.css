@@ -1,0 +1,25 @@
+.selectedButton {
+  border-radius: 15px;
+  margin: 3px;
+  padding: 5px;
+  background-color: #22346a;
+}
+
+.selectedButton:hover {
+  background-color: #22346a;
+}
+
+.button {
+  border-radius: 15px;
+  margin: 2px;
+}
+
+.appbar {
+  display: flex;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.text {
+  color: white;
+}

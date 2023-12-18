@@ -14,6 +14,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import Image from "next/image";
+import styles from "./signUpPage.module.css";
 
 export interface SignUpFormData {
   name: string;
@@ -91,33 +93,20 @@ export default function SignUpPage() {
   }
 
   return (
-    <Container
-      style={{
-        backgroundColor: "#FFF7D3",
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-      component="main"
-      maxWidth="xs"
-    >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          marginTop: "1rem",
-        }}
-      >
-        <Typography variant="h5" gutterBottom>
-          MedLine
-        </Typography>
+    <Container className={styles.container} component="main" maxWidth="xs">
+      <div className={styles.main}>
+        <Image
+          src="/images/titulo_MedLine.png"
+          alt="MedLine Logo"
+          width={370}
+          height={110}
+        />
         <div style={{ marginTop: "3rem" }} />
         <NavbarCadastro userType={userType} setUserType={setUserType} />
         <div style={{ marginTop: "3rem" }} />
-        <h1>Cadastrar como {getUserTypeName(userType)}</h1>
+        <h1 className={styles.cadastrarText}>
+          Cadastrar como {getUserTypeName(userType)}
+        </h1>
         {errorText && <Alert>{errorText}</Alert>}
         {showVerificationCodeSentText && (
           <Alert>
@@ -129,28 +118,32 @@ export default function SignUpPage() {
           style={{ width: "100%", maxWidth: 400, marginTop: "1rem" }}
         >
           <FormInputField
+            className={styles.inputField}
             register={register("name", { required: "Nome é obrigatório" })}
-            label="Nome:"
+            placeholder="Nome"
             formError={errors.name}
             required
             fullWidth
             autoFocus
           />
           <FormInputField
+            className={styles.inputField}
             register={register("cpf", { required: "CPF é obrigatório" })}
-            label="Cpf:"
+            placeholder="CPF"
             formError={errors.cpf}
             required
             fullWidth
           />
           <FormInputField
+            className={styles.inputField}
             register={register("email", { required: "E-Mail é obrigatório" })}
-            label="E-Mail:"
+            placeholder="E-mail"
             formError={errors.email}
             required
             fullWidth
             inputGroupElement={
               <Button
+                className={styles.button}
                 id="button-send-verification-code"
                 disabled={
                   verificationCodeRequestPending ||
@@ -165,47 +158,48 @@ export default function SignUpPage() {
             }
           />
           <FormInputField
+            className={styles.inputField}
             register={register("verificationCode", {
               required: "Código de verificação é obrigatório",
             })}
-            label="Código de verificação:"
+            placeholder="Código de verificação"
             formError={errors.verificationCode}
             required
             fullWidth
           />
           <FormInputField
+            className={styles.inputField}
             register={register("password", { required: "Senha é obrigatório" })}
-            label="Senha:"
+            placeholder="Senha"
             formError={errors.password}
             required
             type="password"
             fullWidth
           />
           <FormInputField
+            className={styles.inputField}
             register={register("confirmPassword", {
               required: "Senha é obrigatório",
             })}
-            label="confirmar senha:"
+            placeholder="confirmar senha"
             formError={errors.confirmPassword}
             required
             type="password"
             fullWidth
           />
           <Button
+            className={styles.buttonSubmit}
             type="submit"
             fullWidth
             variant="contained"
-            color="primary"
-            style={{ marginTop: "2rem" }}
           >
             Cadastrar
           </Button>
           <Link href="/" passHref>
             <Button
+              className={styles.buttonSubmit}
               fullWidth
               variant="contained"
-              color="secondary"
-              style={{ marginTop: "1rem" }}
             >
               Voltar para o login
             </Button>

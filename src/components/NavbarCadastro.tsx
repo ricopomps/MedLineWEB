@@ -1,6 +1,7 @@
 "use client";
 import { UserType } from "@/network/api/user";
 import { AppBar, Button, Toolbar } from "@mui/material";
+import styles from "./NavbarCadastro.module.css";
 
 const buttonStyle = {
   borderRadius: 20,
@@ -23,37 +24,37 @@ export default function NavbarCadastro({
   setUserType,
 }: NavbarCadastroProps) {
   return (
-    <AppBar position="static">
+    <AppBar className={styles.appbar} position="static">
       <Toolbar>
         <Button
+          className={
+            userType == UserType.pacient ? styles.selectedButton : styles.button
+          }
           component="a"
           onClick={() => setUserType(UserType.pacient)}
           color="inherit"
-          style={
-            userType == UserType.pacient ? selectedButtonStyle : buttonStyle
-          }
         >
           Cadastrar como Paciente
         </Button>
         <Button
+          className={
+            userType == UserType.doctor ? styles.selectedButton : styles.button
+          }
           component="a"
           color="inherit"
           onClick={() => setUserType(UserType.doctor)}
-          style={
-            userType == UserType.doctor ? selectedButtonStyle : buttonStyle
-          }
         >
           Cadastrar como Médico
         </Button>
         <Button
+          className={
+            userType == UserType.recepcionista
+              ? styles.selectedButton
+              : styles.button
+          }
           onClick={() => setUserType(UserType.recepcionista)}
           component="a"
           color="inherit"
-          style={
-            userType == UserType.recepcionista
-              ? selectedButtonStyle
-              : buttonStyle
-          }
         >
           Cadastrar como Recepcionista
         </Button>
