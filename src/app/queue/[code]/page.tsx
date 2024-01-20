@@ -83,7 +83,7 @@ export default async function QueuePage({ params: { code } }: QueuePageProps) {
           alignItems: "center",
         }}
       >
-        <Link href="/">
+        <Link href="/home">
           <IconButton aria-label="back" size="large">
             voltar
             {/* <ArrowBackIcon /> */}

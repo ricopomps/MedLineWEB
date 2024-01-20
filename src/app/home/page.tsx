@@ -17,16 +17,13 @@ export default function HomePage() {
   const router = useRouter();
   const [queues, setQueues] = useState<Queue[]>([]);
 
-  function isRecepcionista() {
-    console.log(user);
-    return user?.userType === UserType.recepcionista;
-  }
+  const isRecepcionista = user?.userType === UserType.recepcionista;
 
   useEffect(() => {
     async function getQueuesByUser() {
+      if (!user) return;
       try {
-        if (!user) throw Error("Não logado");
-        const queues = isRecepcionista()
+        const queues = isRecepcionista
           ? await QueuesApi.getQueuesRecepcionista(user.clinicDocument ?? "")
           : await QueuesApi.getQueuesByUser(user._id);
         setQueues(queues);
@@ -36,7 +33,8 @@ export default function HomePage() {
       }
     }
     getQueuesByUser();
-  }, []);
+  }, [user, isRecepcionista]);
+
   return (
     <Container
       component="main"
@@ -50,8 +48,8 @@ export default function HomePage() {
       }}
     >
       HOME PAGE AFTER LOGIN
-      {!isRecepcionista() && user && <EnterQueueModal userId={user._id} />}
-      {isRecepcionista() && user && (
+      {!isRecepcionista && user && <EnterQueueModal userId={user._id} />}
+      {isRecepcionista && user && (
         <CreateQueueModal clinicDocument={user.clinicDocument ?? ""} />
       )}
       {queues.map((queue) => (

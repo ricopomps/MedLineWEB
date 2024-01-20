@@ -28,10 +28,10 @@ export default function NavbarCadastro({
       <Toolbar>
         <Button
           className={
-            userType == UserType.pacient ? styles.selectedButton : styles.button
+            userType == UserType.patient ? styles.selectedButton : styles.button
           }
           component="a"
-          onClick={() => setUserType(UserType.pacient)}
+          onClick={() => setUserType(UserType.patient)}
           color="inherit"
         >
           Cadastrar como Paciente
