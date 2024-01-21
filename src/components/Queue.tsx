@@ -2,10 +2,12 @@
 
 import useAuthenticatedUser from "@/hooks/useAuthenticatedUser";
 import { Queue } from "@/models/queue";
+import { User } from "@/models/user";
 import * as QueuesApi from "@/network/api/queue";
 import { UserType } from "@/network/api/user";
 import { handleError } from "@/utils/utils";
 import { Button } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 interface QueueProps {
   queue: Queue;
@@ -52,6 +54,7 @@ export default function Queue({ queue }: QueueProps) {
 
   return (
     <div>
+      {user && <MedicVision currentUser={user} queue={queue} />}
       {user?.userType === UserType.patient && (
         <>
           {isUserInQueue() ? (
@@ -81,6 +84,38 @@ export default function Queue({ queue }: QueueProps) {
             </Button>
           </>
         ))}
+    </div>
+  );
+}
+
+interface MedicVisionProps {
+  queue: Queue;
+  currentUser: User;
+}
+
+function MedicVision({ currentUser, queue }: MedicVisionProps) {
+  const router = useRouter();
+  if (currentUser.userType !== UserType.doctor) return null;
+
+  async function endAppointment() {
+    try {
+      await QueuesApi.endAppointment(queue._id);
+      router.refresh();
+    } catch (error) {}
+  }
+
+  return (
+    <div>
+      {queue.users && queue.users.length > 0 ? (
+        <div>
+          <div>Usuario atual: {queue.users[0].name}</div>
+          <Button color="error" onClick={endAppointment}>
+            Encerrar
+          </Button>
+        </div>
+      ) : (
+        <p>Não há usuarios nessa fila</p>
+      )}
     </div>
   );
 }

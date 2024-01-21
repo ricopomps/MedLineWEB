@@ -18,6 +18,7 @@ export default function HomePage() {
   const [queues, setQueues] = useState<Queue[]>([]);
 
   const isRecepcionista = user?.userType === UserType.recepcionista;
+  const isDoctor = user?.userType === UserType.doctor;
 
   useEffect(() => {
     async function getQueuesByUser() {
@@ -25,6 +26,8 @@ export default function HomePage() {
       try {
         const queues = isRecepcionista
           ? await QueuesApi.getQueuesRecepcionista(user.clinicDocument ?? "")
+          : isDoctor
+          ? await QueuesApi.getQueuesDoctor(user._id)
           : await QueuesApi.getQueuesByUser(user._id);
         setQueues(queues);
       } catch (error) {
@@ -33,7 +36,7 @@ export default function HomePage() {
       }
     }
     getQueuesByUser();
-  }, [user, isRecepcionista]);
+  }, [user, isRecepcionista, isDoctor]);
 
   return (
     <Container
@@ -48,9 +51,11 @@ export default function HomePage() {
       }}
     >
       HOME PAGE AFTER LOGIN
-      {!isRecepcionista && user && <EnterQueueModal userId={user._id} />}
+      {user && user?.userType === UserType.patient && (
+        <EnterQueueModal userId={user._id} />
+      )}
       {isRecepcionista && user && (
-        <CreateQueueModal clinicDocument={user.clinicDocument ?? ""} />
+        <CreateQueueModal clinicDocument={user.clinicDocument?.[0] ?? ""} />
       )}
       {queues.map((queue) => (
         <Link key={queue.code} href={`/queue/${queue.code}`}>

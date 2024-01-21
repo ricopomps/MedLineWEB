@@ -56,3 +56,15 @@ export async function getUsers(userType?: UserType) {
 export async function logout() {
   await api.post(`${baseUrl}/logout`);
 }
+
+export async function getStaff(clinicDocument: string) {
+  const response = await api.get<User[]>(`${baseUrl}/clinic/${clinicDocument}`);
+  return response.data;
+}
+
+export async function addStaff(userId: string, clinicDocument: string) {
+  const response = await api.post<User>(`${baseUrl}/clinic/${clinicDocument}`, {
+    userId,
+  });
+  return response.data;
+}
