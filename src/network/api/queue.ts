@@ -44,3 +44,13 @@ export async function removeFromQueue(queueCode: string, userId: string) {
   });
   return response.data;
 }
+
+export async function getQueuesDoctor(userId: string) {
+  const response = await api.get<Queue[]>(`${baseUrl}/doctor/${userId}`);
+  return response.data;
+}
+
+export async function endAppointment(queueId: string) {
+  const response = await api.delete(`${baseUrl}/endAppointment/${queueId}`);
+  return response.data;
+}

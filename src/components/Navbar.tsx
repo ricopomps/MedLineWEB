@@ -15,6 +15,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 
@@ -106,6 +107,11 @@ export default function Navbar() {
                 display: { xs: "block", md: "none" },
               }}
             >
+              <Link href={"/home/clinic"}>
+                <MenuItem>
+                  <Typography textAlign="center">Clínica</Typography>
+                </MenuItem>
+              </Link>
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}</Typography>
@@ -133,6 +139,11 @@ export default function Navbar() {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <Link href={"/home/clinic"}>
+              <Button sx={{ my: 2, color: "white", display: "block" }}>
+                Clínica
+              </Button>
+            </Link>
             {pages.map((page) => (
               <Button
                 key={page}
