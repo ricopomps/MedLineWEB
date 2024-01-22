@@ -61,7 +61,7 @@ export default async function UserPage({ params: { userId } }: UserPageProps) {
           alignItems: "center",
         }}
       >
-        <Link href="/">
+        <Link href="/home">
           <IconButton aria-label="back" size="large">
             voltar
             {/* <ArrowBackIcon /> */}

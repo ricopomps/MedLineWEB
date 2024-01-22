@@ -24,7 +24,7 @@ export function handleError(error: unknown) {
 
 export function getUserTypeName(usertype: UserType) {
   switch (usertype) {
-    case UserType.pacient:
+    case UserType.patient:
       return "Paciente";
     case UserType.doctor:
       return "Médico";

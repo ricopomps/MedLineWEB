@@ -5,7 +5,7 @@ import api from "@/network/axiosInstance";
 const baseUrl = "/users";
 
 export enum UserType {
-  pacient = "paciente",
+  patient = "paciente",
   recepcionista = "recepcionista",
   doctor = "doctor",
 }
@@ -51,4 +51,8 @@ export async function getUser(userId: string) {
 export async function getUsers(userType?: UserType) {
   const response = await api.get<User[]>(`${baseUrl}/userType/${userType}`);
   return response.data;
+}
+
+export async function logout() {
+  await api.post(`${baseUrl}/logout`);
 }

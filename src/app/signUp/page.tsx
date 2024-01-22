@@ -8,13 +8,13 @@ import * as UsersApi from "@/network/api/user";
 import { UserType } from "@/network/api/user";
 import { ConflictError, UnauthorizedError } from "@/network/http-errors";
 import { getUserTypeName, handleError } from "@/utils/utils";
-import { Alert, Button, Container, Typography } from "@mui/material";
+import { Alert, Button, Container } from "@mui/material";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import Image from "next/image";
 import styles from "./signUpPage.module.css";
 
 export interface SignUpFormData {
@@ -38,7 +38,7 @@ export default function SignUpPage() {
     useState(false);
 
   const [errorText, setErrorText] = useState<string | null>(null);
-  const [userType, setUserType] = useState<UserType>(UserType.pacient);
+  const [userType, setUserType] = useState<UserType>(UserType.patient);
   const {
     register,
     handleSubmit,
@@ -110,7 +110,7 @@ export default function SignUpPage() {
         <h1 className={styles.cadastrarText}>
           Cadastrar como {getUserTypeName(userType)}
         </h1>
-        {errorText && <Alert>{errorText}</Alert>}
+        {errorText && <Alert severity="error">{errorText}</Alert>}
         {showVerificationCodeSentText && (
           <Alert>Um código de verificação foi enviado para seu e-mail</Alert>
         )}

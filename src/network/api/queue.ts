@@ -37,3 +37,10 @@ export async function getQueuesRecepcionista(clinicDocument: string) {
   );
   return response.data;
 }
+
+export async function removeFromQueue(queueCode: string, userId: string) {
+  const response = await api.delete(`${baseUrl}/user/${queueCode}`, {
+    data: { userId },
+  });
+  return response.data;
+}

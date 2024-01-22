@@ -3,6 +3,7 @@
 import useAuthenticatedUser from "@/hooks/useAuthenticatedUser";
 import { Queue } from "@/models/queue";
 import * as QueuesApi from "@/network/api/queue";
+import { UserType } from "@/network/api/user";
 import { handleError } from "@/utils/utils";
 import { Button } from "@mui/material";
 
@@ -15,7 +16,7 @@ export default function Queue({ queue }: QueueProps) {
 
   function isUserInQueue() {
     console.log(user);
-    if (user && queue.users.includes(user._id)) {
+    if (user && queue.users.map((user) => user._id).includes(user._id)) {
       return true;
     }
     return false;
@@ -23,7 +24,7 @@ export default function Queue({ queue }: QueueProps) {
 
   function getPositionInQueue() {
     if (!user) return;
-    const userIndex = queue.users.findIndex((u) => u === user._id);
+    const userIndex = queue.users.findIndex((u) => u._id === user._id);
     return userIndex + 1;
   }
 
@@ -44,24 +45,42 @@ export default function Queue({ queue }: QueueProps) {
     }
   }
 
+  async function removeUserFromQueue(userId: string) {
+    await QueuesApi.removeFromQueue(queue.code, userId);
+    console.log(queue);
+  }
+
   return (
     <div>
-      {" "}
-      {isUserInQueue() ? (
+      {user?.userType === UserType.patient && (
         <>
-          <h2 style={{ color: "black" }}>
-            Sua posição na fila de espera é: {getPositionInQueue()}
-          </h2>
-          <h2 style={{ color: "black" }}>
-            Tempo estimado para ser atendido: {getTimeInQueue()} minutos
-          </h2>
-        </>
-      ) : (
-        <>
-          Você não está nessa fila
-          <Button onClick={() => enterQueue()}>entrar</Button>
+          {isUserInQueue() ? (
+            <>
+              <h2 style={{ color: "black" }}>
+                Sua posição na fila de espera é: {getPositionInQueue()}
+              </h2>
+              <h2 style={{ color: "black" }}>
+                Tempo estimado para ser atendido: {getTimeInQueue()} minutos
+              </h2>
+            </>
+          ) : (
+            <>
+              Você não está nessa fila
+              <Button onClick={() => enterQueue()}>entrar</Button>
+            </>
+          )}
         </>
       )}
+      {user?.userType === UserType.recepcionista &&
+        queue?.users &&
+        queue.users.map((user, index) => (
+          <>
+            {index + 1} - {user.name}
+            <Button color="error" onClick={() => removeUserFromQueue(user._id)}>
+              Remover
+            </Button>
+          </>
+        ))}
     </div>
   );
 }

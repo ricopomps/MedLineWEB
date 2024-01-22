@@ -6,7 +6,7 @@ import * as UsersApi from "@/network/api/user";
 import { LoginCredentials } from "@/network/api/user";
 import { UnauthorizedError } from "@/network/http-errors";
 import { handleError } from "@/utils/utils";
-import { Alert, Button, Container, Typography } from "@mui/material";
+import { Alert, Button, Container } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -44,7 +44,7 @@ export default function Home() {
 
   return (
     <Container className={styles.container} component="main">
-      {errorText && <Alert>{errorText}</Alert>}
+      {errorText && <Alert severity="error">{errorText}</Alert>}
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.main}>
           <div style={{ marginTop: "-20px" }}>
