@@ -18,6 +18,9 @@ import Typography from "@mui/material/Typography";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import Image from "next/image";
+import logo from "../../public/images/MedLine.svg";
+import styles from "./Navbar.module.css";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard"];
@@ -59,24 +62,7 @@ export default function Navbar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            LOGO
-          </Typography>
+          {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />  */}
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -88,6 +74,13 @@ export default function Navbar() {
               color="inherit"
             >
               <MenuIcon />
+              <Image
+                src={logo}
+                className={styles.logo}
+                alt="logo MedLine"
+                width={100}
+                height={100}
+              />
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -119,7 +112,7 @@ export default function Navbar() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} /> */}
           <Typography
             variant="h5"
             noWrap
@@ -135,9 +128,7 @@ export default function Navbar() {
               color: "inherit",
               textDecoration: "none",
             }}
-          >
-            LOGO
-          </Typography>
+          ></Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Link href={"/home/clinic"}>
               <Button sx={{ my: 2, color: "white", display: "block" }}>

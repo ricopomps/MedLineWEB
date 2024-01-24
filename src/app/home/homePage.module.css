@@ -1,0 +1,15 @@
+
+.container{
+   background-color: #FFF7D3;
+   height: 100vh;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+.logo{
+    
+}
+.button{
+    margin-bottom: 10em;
+}

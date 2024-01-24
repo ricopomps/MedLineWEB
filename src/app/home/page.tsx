@@ -11,6 +11,9 @@ import { Container } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import medLineImagem from "../../app/mediline.svg";
+import styles from "./homePage.module.css";
+import Image from "next/image";
 
 export default function HomePage() {
   const { user } = useAuthenticatedUser();
@@ -39,21 +42,20 @@ export default function HomePage() {
   }, [user, isRecepcionista, isDoctor]);
 
   return (
-    <Container
-      component="main"
-      style={{
-        backgroundColor: "#FFF7D3",
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
+    <Container component="main" className={styles.container}>
+      <Image
+        className={styles.logo}
+        src={medLineImagem}
+        alt="Descrição da imagem"
+        width={300}
+        height={200}
+      />
       HOME PAGE AFTER LOGIN
-      {user && user?.userType === UserType.patient && (
-        <EnterQueueModal userId={user._id} />
-      )}
+      <div className={styles.button}>
+        {user && user?.userType === UserType.patient && (
+          <EnterQueueModal userId={user._id} />
+        )}
+      </div>
       {isRecepcionista && user && (
         <CreateQueueModal clinicDocument={user.clinicDocument?.[0] ?? ""} />
       )}
