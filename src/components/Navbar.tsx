@@ -75,7 +75,7 @@ export default function Navbar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            MedLine
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>

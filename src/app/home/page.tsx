@@ -7,10 +7,14 @@ import { Queue } from "@/models/queue";
 import * as QueuesApi from "@/network/api/queue";
 import { UserType } from "@/network/api/user";
 import { handleError } from "@/utils/utils";
-import { Container } from "@mui/material";
+import { Box, Container, Divider, Icon, Paper, Typography, useTheme } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import BadgeIcon from '@mui/icons-material/Badge';
+import PersonIcon from '@mui/icons-material/Person';
+import EmailIcon from '@mui/icons-material/Email';
+import FingerprintIcon from '@mui/icons-material/Fingerprint';
 
 export default function HomePage() {
   const { user } = useAuthenticatedUser();
@@ -38,34 +42,90 @@ export default function HomePage() {
     getQueuesByUser();
   }, [user, isRecepcionista, isDoctor]);
 
+  const theme = useTheme();
+
   return (
     <Container
       component="main"
       style={{
         backgroundColor: "#FFF7D3",
-        height: "100vh",
+        height: "80%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
       }}
     >
-      HOME PAGE AFTER LOGIN
+      <Box
+        height={theme.spacing(9)} 
+        marginX={1} 
+        padding={0.5} 
+        paddingX={7}
+        display="flex"
+        gap={1}
+        alignItems="center"
+      >
+        <Typography variant="h2" fontFamily="sans-serif" >
+          <strong>Página inicial</strong>
+        </Typography>
+      </Box>
+
       {user && user?.userType === UserType.patient && (
         <EnterQueueModal userId={user._id} />
       )}
       {isRecepcionista && user && (
         <CreateQueueModal clinicDocument={user.clinicDocument?.[0] ?? ""} />
       )}
-      {queues.map((queue) => (
-        <Link key={queue.code} href={`/queue/${queue.code}`}>
-          Fila {queue.code}
-        </Link>
-      ))}
-      {user?._id}
-      {user?.cpf}
-      {user?.email}
-      {user?.name}
+
+
+      <Box marginTop={10}>
+        <Typography variant="h4">
+          {queues.map((queue) => (
+            <>
+            Fila:
+            <Typography color="blue" variant="h4">
+              <Link key={queue.code} href={`/queue/${queue.code}`}>
+                {queue.code}
+              </Link>
+            </Typography>
+            </>
+          ))}
+        </Typography>
+      </Box>
+
+      <Box marginBottom={14} marginTop={15}>
+        Dados do paciente:
+        <Box padding={1} display="flex" >
+          <Typography variant="h6">
+            <PersonIcon />Nome: {user?.name}
+          </Typography>
+        </Box>
+
+        <Divider />
+
+        <Box padding={1} display="flex" >
+          <Typography variant="h6">
+            <EmailIcon />E-mail: {user?.email}
+          </Typography>
+        </Box>
+
+        <Divider />
+
+        <Box padding={1} display="flex" >
+          <Typography variant="h6">
+            <BadgeIcon/> CPF: {user?.cpf}
+          </Typography>
+        </Box>
+
+        <Divider />
+
+        <Box padding={1} display="flex" >
+          <Typography variant="h6">
+            <FingerprintIcon />ID: {user?._id}
+          </Typography>
+        </Box>
+      </Box>
+
     </Container>
   );
 }
