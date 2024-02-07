@@ -66,7 +66,7 @@ export default function HomePage() {
         alignItems="center"
       >
         <Typography variant="h2" fontFamily="sans-serif" >
-          <strong>Página inicial</strong>
+          <strong>Página do paciente</strong>
         </Typography>
       </Box>
 
@@ -82,8 +82,8 @@ export default function HomePage() {
         <Typography variant="h4">
           {queues.map((queue) => (
             <>
-            Fila:
-            <Typography color="blue" variant="h4">
+            Codigos de filas cadastradas:
+            <Typography color="blue" variant="h5">
               <Link key={queue.code} href={`/queue/${queue.code}`}>
                 {queue.code}
               </Link>
@@ -93,7 +93,7 @@ export default function HomePage() {
         </Typography>
       </Box>
 
-      <Box marginBottom={14} marginTop={15}>
+      <Box marginBottom={14} marginTop={13}>
         Dados do paciente:
         <Box padding={1} display="flex" >
           <Typography variant="h6">

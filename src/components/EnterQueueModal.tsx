@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import AddIcon from '@mui/icons-material/Add';
 
 const style = {
   position: "absolute" as "absolute",
@@ -57,9 +58,15 @@ export default function EnterQueueModal({ userId }: EnterQueueModalProps) {
   } = useForm<EnterQueueForm>();
   return (
     <div>
-      <Button variant="outlined" onClick={handleOpen}>
-        Entrar numa fila
-      </Button>
+
+      <Box marginTop={5}>
+        <Button variant="contained" onClick={handleOpen}>
+            <Typography display="flex" alignItems="center">
+              Entrar numa fila <AddIcon />
+            </Typography>
+          </Button>
+      </Box>
+
       <Modal
         open={open}
         onClose={handleClose}

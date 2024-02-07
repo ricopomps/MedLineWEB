@@ -4,6 +4,7 @@ import useAuthenticatedUser from "@/hooks/useAuthenticatedUser";
 import * as UsersApi from "@/network/api/user";
 import AdbIcon from "@mui/icons-material/Adb";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useTheme } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
@@ -20,7 +21,7 @@ import { useRouter } from "next/navigation";
 import * as React from "react";
 
 const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard"];
+const settings = ["Perfil", "Minha conta", "Dashboard"];
 
 export default function Navbar() {
   const { user, mutateUser } = useAuthenticatedUser();
@@ -54,6 +55,8 @@ export default function Navbar() {
     handleCloseUserMenu();
     router.push("/");
   };
+
+  const theme = useTheme();
 
   return (
     <AppBar position="static">
@@ -162,8 +165,10 @@ export default function Navbar() {
                 onClick={handleOpenUserMenu}
                 sx={{ p: 0 }}
               >
-                <Typography>Olá, {user?.name}</Typography>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Typography color="white">Olá, {user?.name}</Typography>
+                <Avatar
+                  sx={{ height: theme.spacing(9), width: theme.spacing(9) }}
+                  src="https://avatars.githubusercontent.com/u/62736535?s=400&u=b56a1e987788018eda6ff4e6f5e077c00f939bef&v=4" />
               </IconButton>
             </Tooltip>
             <Menu

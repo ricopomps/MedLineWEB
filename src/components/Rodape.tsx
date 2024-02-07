@@ -11,10 +11,10 @@ const Rodape: React.FC = () => {
         backgroundColor: "#5889DC",
       }}
     >
-      <Typography variant="body2" color="textSecondary">
+      <Typography variant="body2" color="white">
         @ {anoAtual} Todos os direitos reservados
       </Typography>
-      <Typography variant="body2" color="textSecondary">
+      <Typography variant="body2" color="white">
         MedLine
       </Typography>
     </footer>
