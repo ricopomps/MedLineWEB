@@ -111,7 +111,8 @@ a {
 }
 
 @media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+  :root {
+    --foreground-rgb: 50, 50, 50; /* Dark gray color */
+    /* Other dark mode styles */
   }
 }

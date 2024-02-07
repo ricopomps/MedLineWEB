@@ -7,14 +7,13 @@ import { Queue } from "@/models/queue";
 import * as QueuesApi from "@/network/api/queue";
 import { UserType } from "@/network/api/user";
 import { handleError } from "@/utils/utils";
-import { Box, Container, Divider, Icon, Paper, Typography, useTheme } from "@mui/material";
+import BadgeIcon from "@mui/icons-material/Badge";
+import EmailIcon from "@mui/icons-material/Email";
+import PersonIcon from "@mui/icons-material/Person";
+import { Box, Container, Divider, Typography, useTheme } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import BadgeIcon from '@mui/icons-material/Badge';
-import PersonIcon from '@mui/icons-material/Person';
-import EmailIcon from '@mui/icons-material/Email';
-import FingerprintIcon from '@mui/icons-material/Fingerprint';
 
 export default function HomePage() {
   const { user } = useAuthenticatedUser();
@@ -57,15 +56,15 @@ export default function HomePage() {
       }}
     >
       <Box
-        height={theme.spacing(9)} 
-        marginX={1} 
-        padding={0.5} 
+        height={theme.spacing(9)}
+        marginX={1}
+        padding={0.5}
         paddingX={7}
         display="flex"
         gap={1}
         alignItems="center"
       >
-        <Typography variant="h2" fontFamily="sans-serif" >
+        <Typography variant="h2" fontFamily="sans-serif">
           <strong>Página do paciente</strong>
         </Typography>
       </Box>
@@ -77,17 +76,16 @@ export default function HomePage() {
         <CreateQueueModal clinicDocument={user.clinicDocument?.[0] ?? ""} />
       )}
 
-
       <Box marginTop={10}>
         <Typography variant="h4">
           {queues.map((queue) => (
             <>
-            Codigos de filas cadastradas:
-            <Typography color="blue" variant="h5">
-              <Link key={queue.code} href={`/queue/${queue.code}`}>
-                {queue.code}
-              </Link>
-            </Typography>
+              Codigos de filas cadastradas:
+              <Typography color="blue" variant="h5">
+                <Link key={queue.code} href={`/queue/${queue.code}`}>
+                  {queue.code}
+                </Link>
+              </Typography>
             </>
           ))}
         </Typography>
@@ -95,37 +93,26 @@ export default function HomePage() {
 
       <Box marginBottom={14} marginTop={13}>
         Dados do paciente:
-        <Box padding={1} display="flex" >
+        <Box padding={1} display="flex">
           <Typography variant="h6">
-            <PersonIcon />Nome: {user?.name}
+            <PersonIcon />
+            Nome: {user?.name}
           </Typography>
         </Box>
-
         <Divider />
-
-        <Box padding={1} display="flex" >
+        <Box padding={1} display="flex">
           <Typography variant="h6">
-            <EmailIcon />E-mail: {user?.email}
+            <EmailIcon />
+            E-mail: {user?.email}
           </Typography>
         </Box>
-
         <Divider />
-
-        <Box padding={1} display="flex" >
+        <Box padding={1} display="flex">
           <Typography variant="h6">
-            <BadgeIcon/> CPF: {user?.cpf}
-          </Typography>
-        </Box>
-
-        <Divider />
-
-        <Box padding={1} display="flex" >
-          <Typography variant="h6">
-            <FingerprintIcon />ID: {user?._id}
+            <BadgeIcon /> CPF: {user?.cpf}
           </Typography>
         </Box>
       </Box>
-
     </Container>
   );
 }
