@@ -6,8 +6,9 @@ import { User } from "@/models/user";
 import * as QueuesApi from "@/network/api/queue";
 import { UserType } from "@/network/api/user";
 import { handleError } from "@/utils/utils";
-import { Button } from "@mui/material";
+import { Box, Button, Divider, useTheme } from "@mui/material";
 import { useRouter } from "next/navigation";
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 interface QueueProps {
   queue: Queue;
@@ -52,6 +53,7 @@ export default function Queue({ queue }: QueueProps) {
     console.log(queue);
   }
 
+  const theme = useTheme();
   return (
     <div>
       {user && <MedicVision currentUser={user} queue={queue} />}
@@ -59,12 +61,19 @@ export default function Queue({ queue }: QueueProps) {
         <>
           {isUserInQueue() ? (
             <>
-              <h2 style={{ color: "black" }}>
-                Sua posição na fila de espera é: {getPositionInQueue()}
-              </h2>
-              <h2 style={{ color: "black" }}>
-                Tempo estimado para ser atendido: {getTimeInQueue()} minutos
-              </h2>
+              <Box sx={{ height: theme.spacing(6)}} display="flex" alignItems="center" justifyContent="center">  
+                <h2 style={{ color: "black" }}>
+                  <ArrowRightIcon /> Sua posição na fila de espera é: {getPositionInQueue()}
+                </h2>
+              </Box>
+
+              <Divider />
+
+              <Box flex={1}>
+                <h2 style={{ color: "black" }}>
+                  <ArrowRightIcon /> Tempo estimado para ser atendido: {getTimeInQueue()} minutos
+                </h2>
+              </Box>
             </>
           ) : (
             <>
