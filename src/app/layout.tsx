@@ -1,4 +1,5 @@
 import Rodape from "@/components/Rodape";
+import UserProvider from "@/context/UserProvider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ToastContainer } from "react-toastify";
@@ -20,9 +21,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {children}
-        <Rodape />
-        <ToastContainer />
+        <UserProvider>
+          {children}
+          <Rodape />
+          <ToastContainer />
+        </UserProvider>
       </body>
     </html>
   );

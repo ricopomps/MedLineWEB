@@ -2,44 +2,21 @@
 
 import CreateQueueModal from "@/components/CreateQueueModal";
 import EnterQueueModal from "@/components/EnterQueueModal";
+import { UserContext } from "@/context/UserProvider";
 import useAuthenticatedUser from "@/hooks/useAuthenticatedUser";
-import { Queue } from "@/models/queue";
-import * as QueuesApi from "@/network/api/queue";
 import { UserType } from "@/network/api/user";
-import { handleError } from "@/utils/utils";
 import BadgeIcon from "@mui/icons-material/Badge";
 import EmailIcon from "@mui/icons-material/Email";
 import PersonIcon from "@mui/icons-material/Person";
 import { Box, Container, Divider, Typography, useTheme } from "@mui/material";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 
 export default function HomePage() {
   const { user } = useAuthenticatedUser();
-  const router = useRouter();
-  const [queues, setQueues] = useState<Queue[]>([]);
+  const { queues } = useContext(UserContext);
 
   const isRecepcionista = user?.userType === UserType.recepcionista;
-  const isDoctor = user?.userType === UserType.doctor;
-
-  useEffect(() => {
-    async function getQueuesByUser() {
-      if (!user) return;
-      try {
-        const queues = isRecepcionista
-          ? await QueuesApi.getQueuesRecepcionista(user.clinicDocument ?? "")
-          : isDoctor
-          ? await QueuesApi.getQueuesDoctor(user._id)
-          : await QueuesApi.getQueuesByUser(user._id);
-        setQueues(queues);
-      } catch (error) {
-        console.log(error);
-        handleError(error);
-      }
-    }
-    getQueuesByUser();
-  }, [user, isRecepcionista, isDoctor]);
 
   const theme = useTheme();
 
@@ -79,14 +56,14 @@ export default function HomePage() {
       <Box marginTop={10}>
         <Typography variant="h4">
           {queues.map((queue) => (
-            <>
+            <div key={queue.code}>
               Codigos de filas cadastradas:
               <Typography color="blue" variant="h5">
                 <Link key={queue.code} href={`/queue/${queue.code}`}>
                   {queue.code}
                 </Link>
               </Typography>
-            </>
+            </div>
           ))}
         </Typography>
       </Box>

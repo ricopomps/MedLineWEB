@@ -1,6 +1,7 @@
 import Queue from "@/components/Queue";
 import * as QueuesApi from "@/network/api/queue";
 import { NotFoundError } from "@/network/http-errors";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Box, Container, Typography } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import { Metadata } from "next";
@@ -9,7 +10,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 import mediline from "../../../../public/mediline.svg";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 interface QueuePageProps {
   params: { code: string };
@@ -91,12 +91,13 @@ export default async function QueuePage({ params: { code } }: QueuePageProps) {
         </Link>
       </div>
       <Image src={mediline} alt="mediline" width={500} height={300}></Image>
-
       <Box marginBottom={8}>
-        <Typography variant="h4"><strong>Código da fila:</strong> {queue.code}</Typography>
+        <Typography variant="h4">
+          <strong>Código da fila:</strong> {queue.code}
+        </Typography>
       </Box>
 
-      <Queue queue={queue} />
+      <Queue queueId={queue._id} />
     </Container>
   );
 }

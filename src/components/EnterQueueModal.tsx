@@ -1,17 +1,17 @@
 "use client";
 
 import FormInputField from "@/components/FormInputField";
-import * as QueuesApi from "@/network/api/queue";
+import { UserContext } from "@/context/UserProvider";
 import { handleError } from "@/utils/utils";
+import AddIcon from "@mui/icons-material/Add";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import AddIcon from '@mui/icons-material/Add';
 
 const style = {
   position: "absolute" as "absolute",
@@ -36,15 +36,15 @@ interface EnterQueueModalProps {
 
 export default function EnterQueueModal({ userId }: EnterQueueModalProps) {
   const router = useRouter();
+  const { enterQueue } = useContext(UserContext);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   async function onSubmit(credentials: EnterQueueForm) {
     try {
-      await QueuesApi.enterQueue(credentials.code, userId);
+      enterQueue(credentials.code, userId);
       toast.success("Entrou na fila");
-      router.push(`/queue/${credentials.code}`);
     } catch (error) {
       console.log(error);
       handleError(error);
@@ -58,13 +58,12 @@ export default function EnterQueueModal({ userId }: EnterQueueModalProps) {
   } = useForm<EnterQueueForm>();
   return (
     <div>
-
       <Box marginTop={5}>
         <Button variant="contained" onClick={handleOpen}>
-            <Typography display="flex" alignItems="center">
-              Entrar numa fila <AddIcon />
-            </Typography>
-          </Button>
+          <Typography display="flex" alignItems="center">
+            Entrar numa fila <AddIcon />
+          </Typography>
+        </Button>
       </Box>
 
       <Modal
@@ -96,9 +95,6 @@ export default function EnterQueueModal({ userId }: EnterQueueModalProps) {
               Entrar
             </Button>
           </form>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
         </Box>
       </Modal>
     </div>

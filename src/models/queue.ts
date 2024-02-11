@@ -6,4 +6,12 @@ export interface Queue {
   users: User[];
   doctorId: string;
   createdAt: string;
+  status: QueueStatus;
+}
+
+export enum QueueStatus {
+  waiting = "aguardando",
+  ready = "pronto",
+  inProgress = "em progresso",
+  done = "finalizado",
 }

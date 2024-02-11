@@ -46,7 +46,7 @@ export default function UserDetailQueuePage({
           alignItems: "center",
         }}
       >
-        <div>Careggando...</div>
+        <div>Caregando...</div>
       </Container>
     );
 
