@@ -41,9 +41,25 @@ export default function HomePage() {
         gap={1}
         alignItems="center"
       >
-        <Typography variant="h2" fontFamily="sans-serif">
-          <strong>Página do paciente</strong>
-        </Typography>
+
+        {user && user?.userType === UserType.patient && (
+          <Typography variant="h2" fontFamily="sans-serif">
+            <strong>Página do paciente</strong>
+          </Typography>
+        )}
+
+        {user && user?.userType === UserType.doctor && (
+          <Typography variant="h2" fontFamily="sans-serif">
+            <strong>Página do Medico</strong>
+          </Typography>
+        )}
+
+        {user && user?.userType === UserType.recepcionista && (
+          <Typography variant="h2" fontFamily="sans-serif">
+            <strong>Página do Recepcionista</strong>
+          </Typography>
+        )}
+
       </Box>
 
       {user && user?.userType === UserType.patient && (
