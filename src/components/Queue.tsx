@@ -85,7 +85,7 @@ export default function Queue({ queueId }: QueueProps) {
                       <div>É sua vez no momento!</div>
                     ) : (
                       <div>
-                        Sua posição na fila de espera é: {getPositionInQueue()}
+                        Quantidade de pacientes na sua frente: {getPositionInQueue()}
                       </div>
                     )}
                   </div>
