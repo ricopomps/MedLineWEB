@@ -20,7 +20,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 
-const pages = [''];
+//const pages = [''];
 const settings = ["Perfil", "Minha conta", "Dashboard"];
 
 export default function Navbar() {
@@ -109,16 +109,20 @@ export default function Navbar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              <Link href={"/home/clinic"}>
-                <MenuItem>
-                  <Typography textAlign="center">Clínica</Typography>
-                </MenuItem>
-              </Link>
-              {pages.map((page) => (
+
+              {user && user.userType === UsersApi.UserType.recepcionista && (
+                <Link href={"/home/clinic"}>
+                  <MenuItem>
+                    <Typography textAlign="center">Clínica</Typography>
+                  </MenuItem>
+                </Link>
+              )}
+              
+              {/* {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
-              ))}
+              ))} */}
             </Menu>
           </Box>
           <Typography
@@ -149,7 +153,7 @@ export default function Navbar() {
               )}
 
             </Link>
-            {pages.map((page) => (
+            {/* {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
@@ -157,7 +161,7 @@ export default function Navbar() {
               >
                 {page}
               </Button>
-            ))}
+            ))} */}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>

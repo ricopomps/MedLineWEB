@@ -8,14 +8,13 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { cache } from "react";
 import mediline from "../../../../public/mediline.svg";
 
 interface QueuePageProps {
   params: { code: string };
 }
 
-const getQueue = cache(async (code: string) => {
+const getQueue = async (code: string) => {
   try {
     return await QueuesApi.getQueue(code);
   } catch (error) {
@@ -25,24 +24,7 @@ const getQueue = cache(async (code: string) => {
       throw error;
     }
   }
-});
-
-// const getQueue = (code: string) =>
-//   unstable_cache(
-//     async function (code: string) {
-//       try {
-//         return await QueuesApi.getQueue(code);
-//       } catch (error) {
-//         if (error instanceof NotFoundError) {
-//           notFound();
-//         } else {
-//           throw error;
-//         }
-//       }
-//     },
-//     [code],
-//     { tags: [code] }
-//   )(code);
+};
 
 export async function generateMetadata({
   params: { code },
@@ -51,17 +33,8 @@ export async function generateMetadata({
 
   return {
     title: `Fila - ${queue.code}`,
-    //   description: queue.summary,
-    //   openGraph: {
-    //     images: [{ url: queue.featuredImageUrl }],
-    //   },
   };
 }
-
-// export async function generateStaticParams() {
-//   const codes = await QueuesApi.getAllQueuesCodes();
-//   return codes.map((code) => ({ code }));
-// }
 
 export default async function QueuePage({ params: { code } }: QueuePageProps) {
   const queue = await getQueue(code);
@@ -90,8 +63,14 @@ export default async function QueuePage({ params: { code } }: QueuePageProps) {
           </IconButton>
         </Link>
       </div>
-      <Image src={mediline} alt="mediline" width={500} height={300}></Image>
-      <Box marginBottom={8}>
+      <Image
+        src={mediline}
+        alt="mediline"
+        width={300}
+        height={150}
+        layout="responsive"
+      />
+      <Box marginBottom={8} marginTop={10}>
         <Typography variant="h4">
           <strong>Código da fila:</strong> {queue.code}
         </Typography>

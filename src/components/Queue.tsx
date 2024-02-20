@@ -119,7 +119,7 @@ export default function Queue({ queueId }: QueueProps) {
           <Box
             padding={1}
             display="flex"
-            justifyContent="center"
+            flexDirection="column"
             alignItems="center"
           >
             <Button
@@ -131,7 +131,7 @@ export default function Queue({ queueId }: QueueProps) {
             </Button>
           </Box>
           {queue.users.map((user, index) => (
-            <div key={index}>
+            <div key={index} style={{ marginBottom: theme.spacing(1) }}>
               {index + 1} - {user.name}
               <Button
                 color="error"
