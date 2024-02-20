@@ -20,7 +20,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 
-const pages = ["Products", "Pricing", "Blog"];
+const pages = [''];
 const settings = ["Perfil", "Minha conta", "Dashboard"];
 
 export default function Navbar() {
@@ -122,12 +122,11 @@ export default function Navbar() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/home"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -139,13 +138,17 @@ export default function Navbar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            MedLine
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Link href={"/home/clinic"}>
-              <Button sx={{ my: 2, color: "white", display: "block" }}>
-                Clínica
-              </Button>
+              
+              {user && user?.userType === UsersApi.UserType.recepcionista && (
+                <Button sx={{ my: 2, color: "white", display: "block" }}>
+                  Clínica
+                </Button>
+              )}
+              
             </Link>
             {pages.map((page) => (
               <Button
