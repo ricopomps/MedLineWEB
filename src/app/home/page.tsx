@@ -8,7 +8,7 @@ import { UserType } from "@/network/api/user";
 import BadgeIcon from "@mui/icons-material/Badge";
 import EmailIcon from "@mui/icons-material/Email";
 import PersonIcon from "@mui/icons-material/Person";
-import { Box, Container, Divider, Typography, useTheme } from "@mui/material";
+import { Box, Container, Typography, useTheme } from "@mui/material";
 import Link from "next/link";
 import { useContext } from "react";
 
@@ -25,7 +25,7 @@ export default function HomePage() {
       component="main"
       style={{
         backgroundColor: "#FFF7D3",
-        height: "80%",
+        minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -33,171 +33,66 @@ export default function HomePage() {
       }}
     >
       <Box
-        height={theme.spacing(9)}
-        marginX={1}
-        padding={0.5}
-        paddingX={7}
-        display="flex"
-        gap={1}
-        alignItems="center"
+        paddingX={2}
+        marginBottom={2}
+        textAlign="center"
       >
-
-        {user && user?.userType === UserType.patient && (
-          <Typography variant="h2" fontFamily="sans-serif">
-            <strong>Página do paciente</strong>
-          </Typography>
-        )}
-
-        {user && user?.userType === UserType.doctor && (
-          <Typography variant="h2" fontFamily="sans-serif">
-            <strong>Página do Medico</strong>
-          </Typography>
-        )}
-
-        {user && user?.userType === UserType.recepcionista && (
-          <Typography variant="h2" fontFamily="sans-serif">
-            <strong>Página do Recepcionista</strong>
-          </Typography>
-        )}
-
+        <Typography variant="h2" fontFamily="sans-serif">
+          <strong>
+            {user?.userType === UserType.patient && "Página do paciente"}
+            {user?.userType === UserType.doctor && "Página do Médico"}
+            {user?.userType === UserType.recepcionista && "Página do Recepcionista"}
+          </strong>
+        </Typography>
       </Box>
 
-      {user && user?.userType === UserType.patient && (
+      {user?.userType === UserType.patient && (
         <EnterQueueModal userId={user._id} />
       )}
-      {isRecepcionista && user && (
-        <CreateQueueModal clinicDocument={user.clinicDocument?.[0] ?? ""} />
+      {isRecepcionista && (
+        <CreateQueueModal clinicDocument={user?.clinicDocument?.[0] ?? ""} />
       )}
 
-      {user && user?.userType === UserType.patient && (
-        <Box marginTop={10}>
-          <Typography variant="h4">
-             Filas que você está cadastrado(a):
-            {queues.map((queue) => (
-              <div key={queue.code}>
-                <Typography color="blue" variant="h5">
-                  <Link key={queue.code} href={`/queue/${queue.code}`}>
-                    {queue.code}
-                  </Link>
-                </Typography>
-              </div>
-            ))}
-          </Typography>
+      <Box marginTop={2}>
+        <Typography variant="h4">
+          {user?.userType === UserType.patient && "Filas que você está cadastrado(a):"}
+          {user?.userType === UserType.recepcionista && "Filas criadas para atendimento:"}
+          {user?.userType === UserType.doctor && "Fila(s) com pacientes a serem atendidos:"}
+        </Typography>
+        <Box>
+          {queues.map((queue) => (
+            <Box key={queue.code} marginTop={1}>
+              <Typography color="blue" variant="h5">
+                <Link href={`/queue/${queue.code}`}>
+                  {queue.code}
+                </Link>
+              </Typography>
+            </Box>
+          ))}
         </Box>
-      )}
+      </Box>
 
-
-      {user && user?.userType === UserType.recepcionista && (
-        <Box marginTop={10}>
+      {user && (
+        <Box marginTop={4}>
           <Typography variant="h4">
-            Filas criadas para atendimento:
-            {queues.map((queue) => (
-              <div key={queue.code}>
-                <Typography color="blue" variant="h5">
-                  <Link key={queue.code} href={`/queue/${queue.code}`}>
-                    {queue.code}
-                  </Link>
-                </Typography>
-              </div>
-            ))}
+            Dados do usuário:
           </Typography>
-        </Box>
-      )}
-
-
-      {user && user?.userType === UserType.doctor && (
-        <Box marginTop={10}>
-          <Typography variant="h4">
-            Fila(s) com pacientes a serem atendidos:
-            {queues.map((queue) => (
-              <div key={queue.code}>
-                <Typography color="blue" variant="h5">
-                  <Link key={queue.code} href={`/queue/${queue.code}`}>
-                    {queue.code}
-                  </Link>
-                </Typography>
-              </div>
-            ))}
-          </Typography>
-        </Box>
-      )}
-
-      {/* -------------------------------Dados dos tipos de usuario------------------------------- */}
-      {user && user?.userType === UserType.patient && (
-        <Box marginBottom={14} marginTop={13}>
-          Dados do paciente:
-          <Box padding={1} display="flex">
+          <Box marginTop={2}>
             <Typography variant="h6">
               <PersonIcon />
-              Nome: {user?.name}
+              Nome: {user.name}
             </Typography>
-          </Box>
-          <Divider />
-          <Box padding={1} display="flex">
             <Typography variant="h6">
               <EmailIcon />
-              E-mail: {user?.email}
+              E-mail: {user.email}
             </Typography>
-          </Box>
-          <Divider />
-          <Box padding={1} display="flex">
             <Typography variant="h6">
-              <BadgeIcon /> CPF: {user?.cpf}
+              <BadgeIcon />
+              CPF: {user.cpf}
             </Typography>
           </Box>
         </Box>
       )}
-
-      {user && user?.userType === UserType.doctor && (
-        <Box marginBottom={14} marginTop={13}>
-          Dados do Medico:
-          <Box padding={1} display="flex">
-            <Typography variant="h6">
-              <PersonIcon />
-              Nome: {user?.name}
-            </Typography>
-          </Box>
-          <Divider />
-          <Box padding={1} display="flex">
-            <Typography variant="h6">
-              <EmailIcon />
-              E-mail: {user?.email}
-            </Typography>
-          </Box>
-          <Divider />
-          <Box padding={1} display="flex">
-            <Typography variant="h6">
-              <BadgeIcon /> CPF: {user?.cpf}
-            </Typography>
-          </Box>
-        </Box>
-      )}
-
-      {user && user?.userType === UserType.recepcionista && (
-        <Box marginBottom={14} marginTop={13}>
-          Dados do recepcionista:
-          <Box padding={1} display="flex">
-            <Typography variant="h6">
-              <PersonIcon />
-              Nome: {user?.name}
-            </Typography>
-          </Box>
-          <Divider />
-          <Box padding={1} display="flex">
-            <Typography variant="h6">
-              <EmailIcon />
-              E-mail: {user?.email}
-            </Typography>
-          </Box>
-          <Divider />
-          <Box padding={1} display="flex">
-            <Typography variant="h6">
-              <BadgeIcon /> CPF: {user?.cpf}
-            </Typography>
-          </Box>
-        </Box>
-      )}
-
     </Container>
   );
 }

@@ -62,7 +62,6 @@ export default function Navbar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -148,7 +147,7 @@ export default function Navbar() {
                   Clínica
                 </Button>
               )}
-              
+
             </Link>
             {pages.map((page) => (
               <Button
@@ -169,9 +168,26 @@ export default function Navbar() {
                 sx={{ p: 0 }}
               >
                 <Typography color="white">Olá, {user?.name}</Typography>
-                <Avatar
-                  sx={{ height: theme.spacing(9), width: theme.spacing(9) }}
-                  src="https://avatars.githubusercontent.com/u/62736535?s=400&u=b56a1e987788018eda6ff4e6f5e077c00f939bef&v=4" />
+
+                {user && user.userType === UsersApi.UserType.doctor && (
+                  <Avatar
+                    sx={{ height: theme.spacing(6), width: theme.spacing(6) }}
+                    src="https://t3.ftcdn.net/jpg/06/08/67/00/240_F_608670019_70V6uzPwlY5AhdhsmQnldUvqLOZdfXqt.jpg" />
+                )}
+
+                {user && user.userType === UsersApi.UserType.recepcionista && (
+                  <Avatar
+                    sx={{ height: theme.spacing(6), width: theme.spacing(6) }}
+                    src="https://t3.ftcdn.net/jpg/06/72/40/74/240_F_672407491_F0Qe9pjXEISgqztkCqiBkIsDusZGAJwd.jpg" />
+                )}
+
+                {user && user.userType === UsersApi.UserType.patient && (
+                  <Avatar
+                    sx={{ height: theme.spacing(6), width: theme.spacing(6) }}
+                    src="https://t3.ftcdn.net/jpg/06/92/34/64/240_F_692346400_UzYGmrJm6qhyPPXyZeUGuyEhkwr1iSFN.jpg" />
+                )}
+
+
               </IconButton>
             </Tooltip>
             <Menu
