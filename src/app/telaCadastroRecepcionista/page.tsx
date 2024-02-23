@@ -1,3 +1,5 @@
+"use client";
+
 import { Button, Container, TextField, Typography } from "@mui/material";
 import Link from "next/link";
 
