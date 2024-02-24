@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-
+import styles from "./EnterQueueModal.module.css";
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -20,9 +20,9 @@ const style = {
   width: 400,
   color: "#5889DC",
   bgcolor: "#99ABCA",
-  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  borderRadius: "10px",
 };
 
 interface EnterQueueForm {
@@ -57,20 +57,26 @@ export default function EnterQueueModal({ userId }: EnterQueueModalProps) {
   } = useForm<EnterQueueForm>();
   return (
     <div>
-      <Button variant="outlined" onClick={handleOpen}>
+      <Button className={styles.button} variant="outlined" onClick={handleOpen}>
         Entrar numa fila
       </Button>
       <Modal
+        className={styles.modalExterno}
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+        <Box className={styles.modal} sx={style}>
+          <Typography
+            className={styles.paragraph}
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+          >
             Entrar na fila
           </Typography>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
             <FormInputField
               register={register("code", { required: "Código é obrigatório" })}
               label="Digite o código:"
@@ -89,9 +95,6 @@ export default function EnterQueueModal({ userId }: EnterQueueModalProps) {
               Entrar
             </Button>
           </form>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
         </Box>
       </Modal>
     </div>

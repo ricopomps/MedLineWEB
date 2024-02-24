@@ -29,7 +29,7 @@ export default function TelaCadastroPaciente() {
         <div style={{ marginTop: "3rem" }} />
         {/* <NavbarCadastro /> */}
         <div style={{ marginTop: "3rem" }} />
-        <h1>Cadastrar como Paciente</h1>
+        <h1>Cadastrar como paciente</h1>
 
         <form style={{ width: "100%", maxWidth: 400, marginTop: "1rem" }}>
           <TextField

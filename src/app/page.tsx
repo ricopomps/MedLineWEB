@@ -49,9 +49,9 @@ export default function Home() {
         <div className={styles.main}>
           <div style={{ marginTop: "-20px" }}>
             <Image
-              src="/images/titulo_MedLine.png"
+              src="/images/medline_branco_cruz_2.svg"
               alt="MedLine Logo"
-              width={435}
+              width={450}
               height={140}
             />
           </div>
@@ -75,7 +75,12 @@ export default function Home() {
             type="password"
           />
 
-          <Button type="submit" variant="contained" color="primary">
+          <Button
+            className={styles.buttonSubmit}
+            type="submit"
+            variant="contained"
+            color="primary"
+          >
             Entrar
           </Button>
           <span className={styles.newClient}>

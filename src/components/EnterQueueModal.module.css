@@ -1,0 +1,42 @@
+.button {
+  color: white;
+  background-color: #22346a;
+}
+.button:hover {
+  background-color: #415ea3;
+}
+
+.modalExterno {
+  color: red;
+}
+.modal {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  outline: none;
+  position: "absolute" as "absolute";
+  top: 50%;
+  left: 50%;
+  transform: "translate(-50%, -50%)";
+  width: 400;
+  color: "#5889DC";
+  background-color: "#99ABCA";
+  box-shadow: 24;
+}
+.paragraph {
+  color: white;
+  font-size: 24px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  color: white;
+}
+
+.modalDesc {
+  color: white;
+  font-size: 18px;
+  text-align: center;
+}
