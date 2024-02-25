@@ -2,7 +2,6 @@
 
 import useAuthenticatedUser from "@/hooks/useAuthenticatedUser";
 import * as UsersApi from "@/network/api/user";
-import AdbIcon from "@mui/icons-material/Adb";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useTheme } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
@@ -62,26 +61,25 @@ export default function Navbar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/home"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            MedLine
-          </Typography>
+          <Link href="/home">
+            <Typography
+              variant="h6"
+              noWrap
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              MedLine
+            </Typography>
+          </Link>
 
           {user && user.userType === UsersApi.UserType.recepcionista && (
-                
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
@@ -111,42 +109,39 @@ export default function Navbar() {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                  <Link href={"/home/clinic"}>
-                    <MenuItem>
-                      <Typography textAlign="center">Clínica</Typography>
-                    </MenuItem>
-                  </Link>
+                <Link href={"/home/clinic"}>
+                  <MenuItem>
+                    <Typography textAlign="center">Clínica</Typography>
+                  </MenuItem>
+                </Link>
               </Menu>
             </Box>
-
           )}
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/home"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            MedLine
-          </Typography>
+          <Link href="/home">
+            <Typography
+              variant="h5"
+              noWrap
+              sx={{
+                mr: 2,
+                display: { xs: "flex", md: "none" },
+                flexGrow: 1,
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              MedLine
+            </Typography>
+          </Link>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Link href={"/home/clinic"}>
-              
               {user && user?.userType === UsersApi.UserType.recepcionista && (
                 <Button sx={{ my: 2, color: "white", display: "block" }}>
                   Clínica
                 </Button>
               )}
-
             </Link>
           </Box>
 
@@ -162,22 +157,23 @@ export default function Navbar() {
                 {user && user.userType === UsersApi.UserType.doctor && (
                   <Avatar
                     sx={{ height: theme.spacing(6), width: theme.spacing(6) }}
-                    src="https://t3.ftcdn.net/jpg/06/08/67/00/240_F_608670019_70V6uzPwlY5AhdhsmQnldUvqLOZdfXqt.jpg" />
+                    src="https://t3.ftcdn.net/jpg/06/08/67/00/240_F_608670019_70V6uzPwlY5AhdhsmQnldUvqLOZdfXqt.jpg"
+                  />
                 )}
 
                 {user && user.userType === UsersApi.UserType.recepcionista && (
                   <Avatar
                     sx={{ height: theme.spacing(6), width: theme.spacing(6) }}
-                    src="https://t3.ftcdn.net/jpg/06/72/40/74/240_F_672407491_F0Qe9pjXEISgqztkCqiBkIsDusZGAJwd.jpg" />
+                    src="https://t3.ftcdn.net/jpg/06/72/40/74/240_F_672407491_F0Qe9pjXEISgqztkCqiBkIsDusZGAJwd.jpg"
+                  />
                 )}
 
                 {user && user.userType === UsersApi.UserType.patient && (
                   <Avatar
                     sx={{ height: theme.spacing(6), width: theme.spacing(6) }}
-                    src="https://t3.ftcdn.net/jpg/06/92/34/64/240_F_692346400_UzYGmrJm6qhyPPXyZeUGuyEhkwr1iSFN.jpg" />
+                    src="https://t3.ftcdn.net/jpg/06/92/34/64/240_F_692346400_UzYGmrJm6qhyPPXyZeUGuyEhkwr1iSFN.jpg"
+                  />
                 )}
-
-
               </IconButton>
             </Tooltip>
             <Menu

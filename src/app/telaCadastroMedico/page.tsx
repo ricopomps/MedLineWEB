@@ -103,7 +103,6 @@ export default function TelaCadastroMedico() {
               variant="contained"
               color="secondary"
               style={{ marginTop: "1rem" }}
-              component="a"
             >
               Voltar para o login
             </Button>

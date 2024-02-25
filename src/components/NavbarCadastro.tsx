@@ -30,7 +30,6 @@ export default function NavbarCadastro({
           className={
             userType == UserType.patient ? styles.selectedButton : styles.button
           }
-          component="a"
           onClick={() => setUserType(UserType.patient)}
           color="inherit"
         >
@@ -40,7 +39,6 @@ export default function NavbarCadastro({
           className={
             userType == UserType.doctor ? styles.selectedButton : styles.button
           }
-          component="a"
           color="inherit"
           onClick={() => setUserType(UserType.doctor)}
         >
@@ -53,7 +51,6 @@ export default function NavbarCadastro({
               : styles.button
           }
           onClick={() => setUserType(UserType.recepcionista)}
-          component="a"
           color="inherit"
         >
           Cadastrar como Recepcionista
