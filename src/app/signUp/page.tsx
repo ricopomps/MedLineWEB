@@ -201,13 +201,14 @@ export default function SignUpPage() {
             />
           )}
           <Button
-            className={styles.buttonSubmit}
+            className={styles.buttonCadastrar}
             type="submit"
             fullWidth
             variant="contained"
           >
             Cadastrar
           </Button>
+          <br/>
           <Link href="/" passHref>
             <Button
               className={styles.buttonSubmit}
