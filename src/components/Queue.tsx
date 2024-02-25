@@ -13,6 +13,7 @@ import { Box, Button, Divider, Typography, useTheme } from "@mui/material";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
+import './style.css';
 
 interface QueueProps {
   queueId: string;
@@ -130,17 +131,21 @@ export default function Queue({ queueId }: QueueProps) {
               Iniciar
             </Button>
           </Box>
-          {queue.users.map((user, index) => (
-            <div key={index} style={{ marginBottom: theme.spacing(1) }}>
-              {index + 1} - {user.name}
-              <Button
-                color="error"
-                onClick={() => removeUserFromQueue(user._id)}
-              >
-                Remover
-              </Button>
-            </div>
-          ))}
+
+          <div className="scrollbar" id="style-1">
+            {queue.users.map((user, index) => (
+              <div key={index} style={{ marginBottom: theme.spacing(1) }}>
+                {index + 1} - {user.name}
+                <Button
+                  color="error"
+                  onClick={() => removeUserFromQueue(user._id)}
+                >
+                  Remover
+                </Button>
+              </div>
+            ))}
+          </div>
+          
         </>
       )}
     </div>

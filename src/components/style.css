@@ -1,0 +1,23 @@
+.scrollbar {
+    background-color: #F5F5F5;
+    float: left;
+    height: 115px;
+    margin-bottom: 25px;
+    margin-left: 22px;
+    width: 500px;
+    overflow-y: scroll;
+}
+
+.force-overflow {
+    min-height: 450px;
+}
+
+#style-1::-webkit-scrollbar {
+    width: 12px;
+    background-color: #F5F5F5;
+} 
+
+
+#style-1::-webkit-scrollbar-thumb {
+    background-color: #b0b0b0;
+}
