@@ -5,12 +5,13 @@ import useAuthenticatedUser from "@/hooks/useAuthenticatedUser";
 import { User } from "@/models/user";
 import * as UsersApi from "@/network/api/user";
 import { UserType } from "@/network/api/user";
-import { Container } from "@mui/material";
+import { CircularProgress, Container } from "@mui/material";
 import { useEffect, useState } from "react";
 
 export default function ClinicPage() {
   const { user } = useAuthenticatedUser();
   const [clinicStaff, setClinicStaff] = useState<User[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const hasAccess =
     user && user?.userType === UserType.recepcionista && user.clinicDocument;
@@ -18,8 +19,15 @@ export default function ClinicPage() {
   useEffect(() => {
     if (hasAccess) {
       const getStaff = async () => {
-        const staff = await UsersApi.getStaff(user.clinicDocument!);
-        setClinicStaff(staff);
+        try {
+          setIsLoading(true);
+
+          const staff = await UsersApi.getStaff(user.clinicDocument!);
+          setClinicStaff(staff);
+        } catch (error) {
+        } finally {
+          setIsLoading(false);
+        }
       };
       getStaff();
     }
@@ -42,6 +50,7 @@ export default function ClinicPage() {
       }}
     >
       <div>
+        {isLoading && <CircularProgress />}
         {clinicStaff.map((staff) => (
           <div key={staff._id}>
             {staff.name} - {staff.userType}

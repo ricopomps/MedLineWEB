@@ -8,7 +8,7 @@ import { UserType } from "@/network/api/user";
 import BadgeIcon from "@mui/icons-material/Badge";
 import EmailIcon from "@mui/icons-material/Email";
 import PersonIcon from "@mui/icons-material/Person";
-import { Box, Container, Typography, useTheme } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import Link from "next/link";
 import { useContext } from "react";
 
@@ -17,8 +17,6 @@ export default function HomePage() {
   const { queues } = useContext(UserContext);
 
   const isRecepcionista = user?.userType === UserType.recepcionista;
-
-  const theme = useTheme();
 
   return (
     <Container
@@ -32,16 +30,13 @@ export default function HomePage() {
         justifyContent: "center",
       }}
     >
-      <Box
-        paddingX={2}
-        marginBottom={2}
-        textAlign="center"
-      >
+      <Box paddingX={2} marginBottom={2} textAlign="center">
         <Typography variant="h2" fontFamily="sans-serif">
           <strong>
             {user?.userType === UserType.patient && "Página do paciente"}
             {user?.userType === UserType.doctor && "Página do Médico"}
-            {user?.userType === UserType.recepcionista && "Página do Recepcionista"}
+            {user?.userType === UserType.recepcionista &&
+              "Página do Recepcionista"}
           </strong>
         </Typography>
       </Box>
@@ -55,17 +50,18 @@ export default function HomePage() {
 
       <Box marginTop={2}>
         <Typography variant="h4">
-          {user?.userType === UserType.patient && "Filas que você está cadastrado(a):"}
-          {user?.userType === UserType.recepcionista && "Filas criadas para atendimento:"}
-          {user?.userType === UserType.doctor && "Fila(s) com pacientes a serem atendidos:"}
+          {user?.userType === UserType.patient &&
+            "Filas que você está cadastrado(a):"}
+          {user?.userType === UserType.recepcionista &&
+            "Filas criadas para atendimento:"}
+          {user?.userType === UserType.doctor &&
+            "Fila(s) com pacientes a serem atendidos:"}
         </Typography>
         <Box>
           {queues.map((queue) => (
             <Box key={queue.code} marginTop={1}>
               <Typography color="blue" variant="h5">
-                <Link href={`/queue/${queue.code}`}>
-                  {queue.code}
-                </Link>
+                <Link href={`/queue/${queue.code}`}>{queue.code}</Link>
               </Typography>
             </Box>
           ))}
@@ -74,9 +70,7 @@ export default function HomePage() {
 
       {user && (
         <Box marginTop={4}>
-          <Typography variant="h4">
-            Dados do usuário:
-          </Typography>
+          <Typography variant="h4">Dados do usuário:</Typography>
           <Box marginTop={2}>
             <Typography variant="h6">
               <PersonIcon />

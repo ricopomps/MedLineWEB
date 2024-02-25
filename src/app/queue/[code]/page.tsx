@@ -76,7 +76,7 @@ export default async function QueuePage({ params: { code } }: QueuePageProps) {
         </Typography>
       </Box>
 
-      <Queue queueId={queue._id} />
+      <Queue queueId={queue._id} queueCode={queue.code} />
     </Container>
   );
 }

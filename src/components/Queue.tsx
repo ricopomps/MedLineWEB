@@ -4,24 +4,24 @@ import { UserContext } from "@/context/UserProvider";
 import useAuthenticatedUser from "@/hooks/useAuthenticatedUser";
 import { Queue, QueueStatus } from "@/models/queue";
 import { User } from "@/models/user";
-import * as QueuesApi from "@/network/api/queue";
 import { UserType } from "@/network/api/user";
-import { handleError } from "@/utils/utils";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import PersonIcon from "@mui/icons-material/Person";
 import { Box, Button, Divider, Typography, useTheme } from "@mui/material";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
-import './style.css';
+import "./style.css";
 
 interface QueueProps {
+  queueCode: string;
   queueId: string;
 }
 
-export default function Queue({ queueId }: QueueProps) {
+export default function Queue({ queueId, queueCode }: QueueProps) {
   const { user } = useAuthenticatedUser();
-  const { queues, setQueueWaiting } = useContext(UserContext);
+  const { queues, setQueueWaiting, removeFromQueue, enterQueue } =
+    useContext(UserContext);
   const [queue, setQueue] = useState(
     queues.find((queue) => queue._id === queueId)
   );
@@ -49,20 +49,8 @@ export default function Queue({ queueId }: QueueProps) {
     if (position) return position * medianTime;
   }
 
-  async function enterQueue() {
-    try {
-      if (!user || !queue) throw Error("Não logado");
-      await QueuesApi.enterQueue(queue.code, user._id);
-    } catch (error) {
-      console.log(error);
-
-      handleError(error);
-    }
-  }
-
-  async function removeUserFromQueue(userId: string) {
-    if (!queue) throw Error("Não encontrado fila");
-    await QueuesApi.removeFromQueue(queue.code, userId);
+  function handleEnterQueue() {
+    if (user) enterQueue(queueCode, user._id);
   }
 
   const theme = useTheme();
@@ -86,7 +74,8 @@ export default function Queue({ queueId }: QueueProps) {
                       <div>É sua vez no momento!</div>
                     ) : (
                       <div>
-                        Quantidade de pacientes na sua frente: {getPositionInQueue()}
+                        Quantidade de pacientes na sua frente:{" "}
+                        {getPositionInQueue()}
                       </div>
                     )}
                   </div>
@@ -107,7 +96,7 @@ export default function Queue({ queueId }: QueueProps) {
           ) : (
             <>
               Você não está nessa fila
-              <Button onClick={() => enterQueue()}>entrar</Button>
+              <Button onClick={handleEnterQueue}>entrar</Button>
             </>
           )}
         </>
@@ -138,14 +127,13 @@ export default function Queue({ queueId }: QueueProps) {
                 {index + 1} - {user.name}
                 <Button
                   color="error"
-                  onClick={() => removeUserFromQueue(user._id)}
+                  onClick={() => removeFromQueue(queue.code, user._id)}
                 >
                   Remover
                 </Button>
               </div>
             ))}
           </div>
-          
         </>
       )}
     </div>
@@ -210,6 +198,21 @@ function MedicVision({ currentUser, queue }: MedicVisionProps) {
                   </Box>
                 </Link>
               </div>
+              {queue.users.length > 1 && (
+                <div>
+                  Usuários na fila
+                  {queue.users.slice(1).map((user) => (
+                    <Link key={user._id} href={`${pathname}/${user._id}`}>
+                      <Box padding={1} display="flex">
+                        <Typography variant="h6">
+                          <PersonIcon />
+                          Nome: {user.name}
+                        </Typography>
+                      </Box>
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
           ) : (
             <p>Não há usuarios nessa fila</p>
@@ -222,11 +225,11 @@ function MedicVision({ currentUser, queue }: MedicVisionProps) {
             queue.users.map((user) => (
               <div key={user._id}>
                 <div>
-                  <Link href={`${pathname}/${queue.users[0]._id}`}>
+                  <Link href={`${pathname}/${user._id}`}>
                     <Box padding={1} display="flex">
                       <Typography variant="h6">
                         <PersonIcon />
-                        Nome: {queue.users[0].name}
+                        Nome: {user.name}
                       </Typography>
                     </Box>
                   </Link>

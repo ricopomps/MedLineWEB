@@ -16,6 +16,7 @@ interface UserContext {
   endAppointment: (queueCode: string) => void;
   setQueueReady: (queueCode: string) => void;
   setQueueWaiting: (queueCode: string) => void;
+  removeFromQueue: (queueCode: string, userId: string) => void;
   queues: Queue[];
 }
 
@@ -33,6 +34,9 @@ export const UserContext = createContext<UserContext>({
     throw Error("UserContext not implemented");
   },
   setQueueWaiting: () => {
+    throw Error("UserContext not implemented");
+  },
+  removeFromQueue: () => {
     throw Error("UserContext not implemented");
   },
   queues: [],
@@ -56,6 +60,7 @@ export default function UserProvider({ children }: UserProviderProps) {
     endAppointment,
     setQueueReady,
     setQueueWaiting,
+    removeFromQueue,
     queues,
   };
 
@@ -159,11 +164,17 @@ export default function UserProvider({ children }: UserProviderProps) {
       router.push(`/queue/${data.queue.code}`);
     };
 
-    const handleUserLeftQueue = (data: { queueCode: string }) => {
+    const handleUserLeftQueue = (data: {
+      queueCode: string;
+      users: User[];
+    }) => {
       const queueAlreadyExists = queues.find(
         (queue) => queue._id === queue._id
       );
-      if (queueAlreadyExists) {
+      const userStillInQueueAnymore = data.users.find(
+        (userInQueue) => user && userInQueue._id === user._id
+      );
+      if (queueAlreadyExists && !userStillInQueueAnymore) {
         setQueues(queues.filter((queue) => queue.code !== data.queueCode));
       }
     };
@@ -229,6 +240,10 @@ export default function UserProvider({ children }: UserProviderProps) {
 
   function toastAppointmentStarted(data: any) {
     toast.success(data);
+  }
+
+  function removeFromQueue(queueCode: string, userId: string) {
+    sendMessage(Events.removeFromQueue, { queueCode, userId });
   }
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

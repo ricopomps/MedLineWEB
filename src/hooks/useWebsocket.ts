@@ -14,6 +14,7 @@ export enum Events {
   queueUsersChanged = "QUEUE_USER_CHANGED",
   userEnteredQueue = "USER_ENTERED_QUEUE",
   userLeftQueue = "USER_LEFT_QUEUE",
+  removeFromQueue = "REMOVE_FROM_QUEUE",
 }
 
 interface WebSocketHook {
