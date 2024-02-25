@@ -47,7 +47,7 @@ export default function UserProvider({ children }: UserProviderProps) {
   const { user } = useAuthenticatedUser();
   const router = useRouter();
   const { subscribeToEvent, sendMessage, unsubscribeFromEvent } = useWebSocket(
-    "http://localhost:5000"
+    process.env.NEXT_PUBLIC_BACKEND_URL ?? ""
   );
 
   const value: UserContext = {
