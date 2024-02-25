@@ -4,8 +4,10 @@ import * as UsersApi from "@/network/api/user";
 import BadgeIcon from "@mui/icons-material/Badge";
 import EmailIcon from "@mui/icons-material/Email";
 import PersonIcon from "@mui/icons-material/Person";
-import { Box, Container, Divider, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Box, Container, Divider, IconButton, Link, Typography } from "@mui/material";
+import { useContext, useEffect, useState } from "react";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { UserContext } from "@/context/UserProvider";
 
 interface UserDetailQueuePageProps {
   params: {
@@ -19,6 +21,7 @@ export default function UserDetailQueuePage({
 }: UserDetailQueuePageProps) {
   const [user, setUser] = useState<User>();
   const [loading, setLoading] = useState(true);
+  const { queues } = useContext(UserContext);
 
   useEffect(() => {
     async function fetchUser() {
@@ -66,6 +69,8 @@ export default function UserDetailQueuePage({
       </Container>
     );
 
+  const selectedQueue = queues.find(queue => queue.code === code);
+
   return (
     <Container
       component="main"
@@ -77,6 +82,24 @@ export default function UserDetailQueuePage({
         alignItems: "center",
       }}
     >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        {selectedQueue && (
+          <Box marginTop={1}>
+            <Link href={`/queue/${selectedQueue.code}`}>
+              <IconButton aria-label="back" size="large">
+                <ArrowBackIcon /> voltar
+              </IconButton>
+            </Link>
+          </Box>
+        )}
+      </div>
+      
       <Box marginBottom={8}>
         <Typography variant="h4">
           <strong>Código da fila:</strong> {code}

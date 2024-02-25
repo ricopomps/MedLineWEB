@@ -53,6 +53,7 @@ export default function Home() {
               alt="MedLine Logo"
               width={435}
               height={140}
+              layout="responsive"
             />
           </div>
           <FormInputField

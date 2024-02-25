@@ -106,7 +106,6 @@ export default function TelaCadastroPaciente() {
               variant="contained"
               color="secondary"
               style={{ marginTop: "1rem" }}
-              component="a"
             >
               Voltar para o login
             </Button>

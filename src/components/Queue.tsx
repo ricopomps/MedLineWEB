@@ -13,6 +13,7 @@ import { Box, Button, Divider, Typography, useTheme } from "@mui/material";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
+import './style.css';
 
 interface QueueProps {
   queueId: string;
@@ -85,7 +86,7 @@ export default function Queue({ queueId }: QueueProps) {
                       <div>É sua vez no momento!</div>
                     ) : (
                       <div>
-                        Sua posição na fila de espera é: {getPositionInQueue()}
+                        Quantidade de pacientes na sua frente: {getPositionInQueue()}
                       </div>
                     )}
                   </div>
@@ -119,7 +120,7 @@ export default function Queue({ queueId }: QueueProps) {
           <Box
             padding={1}
             display="flex"
-            justifyContent="center"
+            flexDirection="column"
             alignItems="center"
           >
             <Button
@@ -130,17 +131,21 @@ export default function Queue({ queueId }: QueueProps) {
               Iniciar
             </Button>
           </Box>
-          {queue.users.map((user, index) => (
-            <div key={index}>
-              {index + 1} - {user.name}
-              <Button
-                color="error"
-                onClick={() => removeUserFromQueue(user._id)}
-              >
-                Remover
-              </Button>
-            </div>
-          ))}
+
+          <div className="scrollbar" id="style-1">
+            {queue.users.map((user, index) => (
+              <div key={index} style={{ marginBottom: theme.spacing(1) }}>
+                {index + 1} - {user.name}
+                <Button
+                  color="error"
+                  onClick={() => removeUserFromQueue(user._id)}
+                >
+                  Remover
+                </Button>
+              </div>
+            ))}
+          </div>
+          
         </>
       )}
     </div>

@@ -5,17 +5,22 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20px; 
 }
 
 .cadastrarText {
   color: #1976d2;
   font-size: 27px;
+  margin-bottom: 20px; 
+  text-align: center; 
 }
 
 .inputField {
   background-color: #5889dc;
   border-radius: 5px;
   color: white;
+  width: 100%; 
+  margin-bottom: 10px; 
 }
 
 .button {
@@ -35,6 +40,7 @@
   align-items: center;
   margin-top: 1em;
   margin-bottom: 1em;
+  width: 100%;
 }
 
 .main {
@@ -42,4 +48,20 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+@media (max-width: 600px) {
+
+  .container {
+    padding: 10px;
+  }
+
+  .cadastrarText {
+    font-size: 22px;
+  }
+
+  .buttonSubmit {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em; 
+  }
 }

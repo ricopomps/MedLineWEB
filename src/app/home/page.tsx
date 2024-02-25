@@ -8,7 +8,7 @@ import { UserType } from "@/network/api/user";
 import BadgeIcon from "@mui/icons-material/Badge";
 import EmailIcon from "@mui/icons-material/Email";
 import PersonIcon from "@mui/icons-material/Person";
-import { Box, Container, Divider, Typography, useTheme } from "@mui/material";
+import { Box, Container, Typography, useTheme } from "@mui/material";
 import Link from "next/link";
 import { useContext } from "react";
 
@@ -25,7 +25,7 @@ export default function HomePage() {
       component="main"
       style={{
         backgroundColor: "#FFF7D3",
-        height: "80%",
+        minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -33,63 +33,66 @@ export default function HomePage() {
       }}
     >
       <Box
-        height={theme.spacing(9)}
-        marginX={1}
-        padding={0.5}
-        paddingX={7}
-        display="flex"
-        gap={1}
-        alignItems="center"
+        paddingX={2}
+        marginBottom={2}
+        textAlign="center"
       >
         <Typography variant="h2" fontFamily="sans-serif">
-          <strong>Página do paciente</strong>
+          <strong>
+            {user?.userType === UserType.patient && "Página do paciente"}
+            {user?.userType === UserType.doctor && "Página do Médico"}
+            {user?.userType === UserType.recepcionista && "Página do Recepcionista"}
+          </strong>
         </Typography>
       </Box>
 
-      {user && user?.userType === UserType.patient && (
+      {user?.userType === UserType.patient && (
         <EnterQueueModal userId={user._id} />
       )}
-      {isRecepcionista && user && (
-        <CreateQueueModal clinicDocument={user.clinicDocument?.[0] ?? ""} />
+      {isRecepcionista && (
+        <CreateQueueModal clinicDocument={user?.clinicDocument?.[0] ?? ""} />
       )}
 
-      <Box marginTop={10}>
+      <Box marginTop={2}>
         <Typography variant="h4">
+          {user?.userType === UserType.patient && "Filas que você está cadastrado(a):"}
+          {user?.userType === UserType.recepcionista && "Filas criadas para atendimento:"}
+          {user?.userType === UserType.doctor && "Fila(s) com pacientes a serem atendidos:"}
+        </Typography>
+        <Box>
           {queues.map((queue) => (
-            <div key={queue.code}>
-              Codigos de filas cadastradas:
+            <Box key={queue.code} marginTop={1}>
               <Typography color="blue" variant="h5">
-                <Link key={queue.code} href={`/queue/${queue.code}`}>
+                <Link href={`/queue/${queue.code}`}>
                   {queue.code}
                 </Link>
               </Typography>
-            </div>
+            </Box>
           ))}
-        </Typography>
+        </Box>
       </Box>
 
-      <Box marginBottom={14} marginTop={13}>
-        Dados do paciente:
-        <Box padding={1} display="flex">
-          <Typography variant="h6">
-            <PersonIcon />
-            Nome: {user?.name}
+      {user && (
+        <Box marginTop={4}>
+          <Typography variant="h4">
+            Dados do usuário:
           </Typography>
+          <Box marginTop={2}>
+            <Typography variant="h6">
+              <PersonIcon />
+              Nome: {user.name}
+            </Typography>
+            <Typography variant="h6">
+              <EmailIcon />
+              E-mail: {user.email}
+            </Typography>
+            <Typography variant="h6">
+              <BadgeIcon />
+              CPF: {user.cpf}
+            </Typography>
+          </Box>
         </Box>
-        <Divider />
-        <Box padding={1} display="flex">
-          <Typography variant="h6">
-            <EmailIcon />
-            E-mail: {user?.email}
-          </Typography>
-        </Box>
-        <Divider />
-        <Box padding={1} display="flex">
-          <Typography variant="h6">
-            <BadgeIcon /> CPF: {user?.cpf}
-          </Typography>
-        </Box>
-      </Box>
+      )}
     </Container>
   );
 }
