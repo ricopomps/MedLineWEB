@@ -1,23 +1,26 @@
 .scrollbar {
     background-color: #F5F5F5;
     float: left;
-    height: 115px;
+    height: 15vh; /* Ajuste a altura conforme necessário */
     margin-bottom: 25px;
     margin-left: 22px;
-    width: 370px;
+    width: 32vw; /* Ajuste a largura conforme necessário */
     overflow-y: scroll;
-}
-
-.force-overflow {
-    min-height: 450px;
 }
 
 #style-1::-webkit-scrollbar {
     width: 12px;
     background-color: #F5F5F5;
-} 
-
+}
 
 #style-1::-webkit-scrollbar-thumb {
     background-color: #b0b0b0;
+}
+
+@media only screen and (max-width: 400px) {
+    .scrollbar {
+        width: calc(100vw - 4px); /* Ajuste conforme necessário */
+        margin-left: 2px;
+        margin-right: 2px;
+    }
 }

@@ -32,8 +32,19 @@
   background-color: #0d429e;
 }
 
+.buttonCadastrar {
+  background-color: #05a413;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 100%;
+}
+
 .buttonSubmit {
-  background-color: #1976d2;
+  background-color: #969798;
   color: white;
   display: flex;
   justify-content: center;

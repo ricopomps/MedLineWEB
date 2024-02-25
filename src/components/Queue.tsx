@@ -82,6 +82,8 @@ export default function Queue({ queueId, queueCode }: QueueProps) {
                 </h2>
               </Box>
 
+              <br/>
+              <br/>
               <Divider />
 
               {getPositionInQueue() !== 0 && (
