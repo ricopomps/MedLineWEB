@@ -47,12 +47,12 @@ export default function Home() {
       {errorText && <Alert severity="error">{errorText}</Alert>}
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.main}>
-          <div style={{ marginTop: "-20px" }}>
+          <div>
             <Image
               src="/images/medline_transparente.svg"
               alt="MedLine Logo"
               width={450}
-              height={140}
+              height={150}
             />
           </div>
           <FormInputField
