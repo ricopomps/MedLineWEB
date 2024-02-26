@@ -99,12 +99,12 @@ export default function SignUpPage() {
     <Container className={styles.container} component="main" maxWidth="xs">
       <div className={styles.main}>
         <Image
-          src="/images/medline_branco_cruz_2.svg"
+          src="/images/medline_transparente.svg"
           alt="MedLine Logo"
           width={370}
           height={110}
         />
-        <div style={{ marginTop: "2rem" }} />
+        <div />
         <h1
           style={{
             fontFamily: "Inter",
@@ -127,7 +127,7 @@ export default function SignUpPage() {
         )}
         <form
           onSubmit={handleSubmit(onSubmit)}
-          style={{ width: "100%", maxWidth: 400, marginTop: "1rem" }}
+          style={{ width: "100%", maxWidth: 400 }}
         >
           <FormInputField
             className={styles.inputField}
