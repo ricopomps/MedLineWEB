@@ -99,12 +99,23 @@ export default function SignUpPage() {
     <Container className={styles.container} component="main" maxWidth="xs">
       <div className={styles.main}>
         <Image
-          src="/images/medline_transparente.svg"
+          src="/images/medline_branco_cruz_2.svg"
           alt="MedLine Logo"
           width={370}
           height={110}
         />
-        <div style={{ marginTop: "1rem" }} />
+        <div style={{ marginTop: "2rem" }} />
+        <h1
+          style={{
+            fontFamily: "Inter",
+            fontSize: "22px",
+            color: "#1976D2",
+            marginBottom: "1rem",
+          }}
+        >
+          {/* Eu sou: */}
+        </h1>
+
         <NavbarCadastro userType={userType} setUserType={setUserType} />
         <div style={{ marginTop: "2rem" }} />
         <h1 className={styles.cadastrarText}>
@@ -201,14 +212,13 @@ export default function SignUpPage() {
             />
           )}
           <Button
-            className={styles.buttonCadastrar}
+            className={styles.buttonSubmit}
             type="submit"
             fullWidth
             variant="contained"
           >
             Cadastrar
           </Button>
-          <br />
           <Link href="/" passHref>
             <Button
               className={styles.buttonSubmit}

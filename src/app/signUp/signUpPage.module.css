@@ -5,22 +5,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
 }
 
 .cadastrarText {
   color: #1976d2;
-  font-size: 24px;
-  margin-bottom: 20px;
-  text-align: center;
+  font-size: 25px;
+  font-family: "inter";
 }
 
 .inputField {
   background-color: #5889dc;
   border-radius: 5px;
   color: white;
-  width: 100%;
-  margin-bottom: 10px;
 }
 
 .button {
@@ -32,26 +28,15 @@
   background-color: #0d429e;
 }
 
-.buttonCadastrar {
-  background-color: #5889dc;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2em;
-  width: 100%;
-  font-family: "Inter", sans-serif;
-}
-
 .buttonSubmit {
-  background-color: #5889dc;
+  background-color: #1976d2;
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 1em;
   margin-bottom: 1em;
-  width: 100%;
-  font-family: "Inter", sans-serif;
+  font-family: "inter";
 }
 
 .main {
@@ -59,15 +44,4 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-}
-
-@media (max-width: 600px) {
-  .container {
-    padding: 10px;
-  }
-
-  .buttonSubmit {
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-  }
 }

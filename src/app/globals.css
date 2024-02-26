@@ -25,6 +25,10 @@
   gap: 0.5rem;
 }
 
+body {
+  background-color: #f0f0f0;
+}
+
 .description p {
   position: relative;
   margin: 0;
