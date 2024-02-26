@@ -5,22 +5,22 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px; 
+  padding: 20px;
 }
 
 .cadastrarText {
   color: #1976d2;
   font-size: 27px;
-  margin-bottom: 20px; 
-  text-align: center; 
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .inputField {
   background-color: #5889dc;
   border-radius: 5px;
   color: white;
-  width: 100%; 
-  margin-bottom: 10px; 
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .button {
@@ -62,7 +62,6 @@
 }
 
 @media (max-width: 600px) {
-
   .container {
     padding: 10px;
   }
@@ -73,6 +72,6 @@
 
   .buttonSubmit {
     margin-top: 0.5em;
-    margin-bottom: 0.5em; 
+    margin-bottom: 0.5em;
   }
 }

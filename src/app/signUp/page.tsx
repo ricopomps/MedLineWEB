@@ -208,7 +208,7 @@ export default function SignUpPage() {
           >
             Cadastrar
           </Button>
-          <br/>
+          <br />
           <Link href="/" passHref>
             <Button
               className={styles.buttonSubmit}
