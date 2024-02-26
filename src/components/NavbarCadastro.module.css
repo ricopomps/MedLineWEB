@@ -1,8 +1,10 @@
 .selectedButton {
-  border-radius: 15px;
+  border-radius: 8px;
   margin: 3px;
   padding: 5px;
   background-color: #22346a;
+  font-family: "inter";
+  font-size: 15px;
 }
 
 .selectedButton:hover {
@@ -10,16 +12,23 @@
 }
 
 .button {
-  border-radius: 15px;
-  margin: 2px;
+  border-radius: 8px;
+  font-family: "inter";
+  font-size: 15px;
 }
 
 .appbar {
   display: flex;
   text-align: center;
-  border-radius: 10px;
+  border-radius: 16px;
 }
 
 .text {
   color: white;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,3 +1,5 @@
+//navbar cadastro
+
 "use client";
 import { UserType } from "@/network/api/user";
 import { AppBar, Button, Toolbar } from "@mui/material";
@@ -25,24 +27,29 @@ export default function NavbarCadastro({
 }: NavbarCadastroProps) {
   return (
     <AppBar className={styles.appbar} position="static">
-      <Toolbar>
+      <h1 style={{ fontFamily: "Inter", fontSize: "22px", marginTop: "1rem" }}>
+        Eu sou:{" "}
+      </h1>
+      <Toolbar className={styles.buttonWrapper}>
         <Button
           className={
             userType == UserType.patient ? styles.selectedButton : styles.button
           }
+          component="a"
           onClick={() => setUserType(UserType.patient)}
           color="inherit"
         >
-          Cadastrar como Paciente
+          Paciente
         </Button>
         <Button
           className={
             userType == UserType.doctor ? styles.selectedButton : styles.button
           }
+          component="a"
           color="inherit"
           onClick={() => setUserType(UserType.doctor)}
         >
-          Cadastrar como Médico
+          Médico
         </Button>
         <Button
           className={
@@ -51,9 +58,10 @@ export default function NavbarCadastro({
               : styles.button
           }
           onClick={() => setUserType(UserType.recepcionista)}
+          component="a"
           color="inherit"
         >
-          Cadastrar como Recepcionista
+          Recepcionista
         </Button>
       </Toolbar>
     </AppBar>

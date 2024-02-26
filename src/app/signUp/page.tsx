@@ -99,7 +99,7 @@ export default function SignUpPage() {
     <Container className={styles.container} component="main" maxWidth="xs">
       <div className={styles.main}>
         <Image
-          src="/images/titulo_MedLine.png"
+          src="/images/medline_transparente.svg"
           alt="MedLine Logo"
           width={370}
           height={110}
