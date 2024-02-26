@@ -23,7 +23,6 @@ export default function RootLayout({
       <body className={inter.className}>
         <UserProvider>
           {children}
-          <Rodape />
           <ToastContainer />
         </UserProvider>
       </body>

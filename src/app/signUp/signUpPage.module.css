@@ -1,5 +1,5 @@
 .container {
-  background-color: #ffffff;
+  background-color: #f0f0f0;
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -10,7 +10,7 @@
 
 .cadastrarText {
   color: #1976d2;
-  font-size: 27px;
+  font-size: 24px;
   margin-bottom: 20px;
   text-align: center;
 }
@@ -33,7 +33,7 @@
 }
 
 .buttonCadastrar {
-  background-color: #05a413;
+  background-color: #5889dc;
   color: white;
   display: flex;
   justify-content: center;
@@ -44,7 +44,7 @@
 }
 
 .buttonSubmit {
-  background-color: #969798;
+  background-color: #5889dc;
   color: white;
   display: flex;
   justify-content: center;
@@ -64,10 +64,6 @@
 @media (max-width: 600px) {
   .container {
     padding: 10px;
-  }
-
-  .cadastrarText {
-    font-size: 22px;
   }
 
   .buttonSubmit {

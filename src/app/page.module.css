@@ -200,6 +200,11 @@
     );
     z-index: 1;
   }
+
+  .newClient {
+    display: none;
+    font-family: "inter", sans-serif;
+  }
 }
 
 /* Tablet and Smaller Desktop */
