@@ -104,9 +104,9 @@ export default function SignUpPage() {
           width={370}
           height={110}
         />
-        <div style={{ marginTop: "3rem" }} />
+        <div style={{ marginTop: "1rem" }} />
         <NavbarCadastro userType={userType} setUserType={setUserType} />
-        <div style={{ marginTop: "3rem" }} />
+        <div style={{ marginTop: "2rem" }} />
         <h1 className={styles.cadastrarText}>
           Cadastrar como {getUserTypeName(userType)}
         </h1>

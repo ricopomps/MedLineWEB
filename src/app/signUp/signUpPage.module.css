@@ -38,9 +38,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-top: 2em;
   width: 100%;
+  font-family: "Inter", sans-serif;
 }
 
 .buttonSubmit {
@@ -49,9 +49,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 1em;
   margin-bottom: 1em;
   width: 100%;
+  font-family: "Inter", sans-serif;
 }
 
 .main {
