@@ -4,7 +4,14 @@ import * as UsersApi from "@/network/api/user";
 import BadgeIcon from "@mui/icons-material/Badge";
 import EmailIcon from "@mui/icons-material/Email";
 import PersonIcon from "@mui/icons-material/Person";
-import { Box, Container, Divider, IconButton, Link, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Divider,
+  IconButton,
+  Link,
+  Typography,
+} from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { UserContext } from "@/context/UserProvider";
@@ -42,8 +49,8 @@ export default function UserDetailQueuePage({
       <Container
         component="main"
         style={{
-          backgroundColor: "#FFF7D3",
-          height: "100vh",
+          backgroundColor: "#f0f0f0",
+          height: "80vh",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -58,7 +65,7 @@ export default function UserDetailQueuePage({
       <Container
         component="main"
         style={{
-          backgroundColor: "#FFF7D3",
+          backgroundColor: "#f0f0f0",
           height: "100vh",
           display: "flex",
           flexDirection: "column",
@@ -69,14 +76,14 @@ export default function UserDetailQueuePage({
       </Container>
     );
 
-  const selectedQueue = queues.find(queue => queue.code === code);
+  const selectedQueue = queues.find((queue) => queue.code === code);
 
   return (
     <Container
       component="main"
       style={{
-        backgroundColor: "#FFF7D3",
-        height: "100vh",
+        backgroundColor: "#f0f0f0",
+        height: "80vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -99,7 +106,7 @@ export default function UserDetailQueuePage({
           </Box>
         )}
       </div>
-      
+
       <Box marginBottom={8}>
         <Typography variant="h4">
           <strong>Código da fila:</strong> {code}

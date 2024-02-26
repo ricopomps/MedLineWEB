@@ -82,8 +82,8 @@ export default function Queue({ queueId, queueCode }: QueueProps) {
                 </h2>
               </Box>
 
-              <br/>
-              <br/>
+              <br />
+              <br />
               <Divider />
 
               {getPositionInQueue() !== 0 && (
@@ -217,7 +217,7 @@ function MedicVision({ currentUser, queue }: MedicVisionProps) {
               )}
             </div>
           ) : (
-            <p>Não há usuarios nessa fila</p>
+            <p>Não há usuários nessa fila</p>
           )}
         </>
       ) : (

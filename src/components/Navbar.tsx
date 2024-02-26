@@ -18,6 +18,7 @@ import Typography from "@mui/material/Typography";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import Image from "next/image";
 
 //const pages = [''];
 const settings = ["Perfil", "Minha conta", "Dashboard"];
@@ -58,25 +59,16 @@ export default function Navbar() {
   const theme = useTheme();
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Link href="/home">
-            <Typography
-              variant="h6"
-              noWrap
-              sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              MedLine
-            </Typography>
+            <Image
+              src="/images/medline_transparente_branco.png"
+              alt="MedLine"
+              width={170}
+              height={50}
+            />
           </Link>
 
           {user && user.userType === UsersApi.UserType.recepcionista && (
@@ -117,24 +109,7 @@ export default function Navbar() {
               </Menu>
             </Box>
           )}
-          <Link href="/home">
-            <Typography
-              variant="h5"
-              noWrap
-              sx={{
-                mr: 2,
-                display: { xs: "flex", md: "none" },
-                flexGrow: 1,
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              MedLine
-            </Typography>
-          </Link>
+          <Link href="/home"></Link>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Link href={"/home/clinic"}>
               {user && user?.userType === UsersApi.UserType.recepcionista && (
@@ -152,7 +127,9 @@ export default function Navbar() {
                 onClick={handleOpenUserMenu}
                 sx={{ p: 0 }}
               >
-                <Typography color="white">Olá, {user?.name}</Typography>
+                <Typography color="white" fontFamily="Inter">
+                  Olá, {user?.name}
+                </Typography>
 
                 {user && user.userType === UsersApi.UserType.doctor && (
                   <Avatar
