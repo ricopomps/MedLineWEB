@@ -12,6 +12,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import UserSelector from "./UserSelector";
+import styles from "./AddStaffModal.module.css";
 
 const style = {
   position: "absolute" as "absolute",
@@ -19,9 +20,8 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 400,
-  color: "#5889DC",
-  bgcolor: "#99ABCA",
-  border: "2px solid #000",
+  color: "#024e99",
+  bgcolor: "#dbdbdb",
   boxShadow: 24,
   p: 4,
 };
@@ -60,7 +60,7 @@ export default function AddStaffModal({ clinicDocument }: AddStaffModalProps) {
   } = useForm<AddStaffForm>();
   return (
     <div>
-      <Button variant="outlined" onClick={handleOpen}>
+      <Button className={styles.button} variant="outlined" onClick={handleOpen}>
         Adicionar membro de equipe
       </Button>
       <Modal
@@ -69,7 +69,7 @@ export default function AddStaffModal({ clinicDocument }: AddStaffModalProps) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={style} className={styles.modal}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Adicionar membro de equipe
           </Typography>

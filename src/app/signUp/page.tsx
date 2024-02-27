@@ -99,14 +99,25 @@ export default function SignUpPage() {
     <Container className={styles.container} component="main" maxWidth="xs">
       <div className={styles.main}>
         <Image
-          src="/images/titulo_MedLine.png"
+          src="/images/medline_transparente.svg"
           alt="MedLine Logo"
           width={370}
           height={110}
         />
-        <div style={{ marginTop: "3rem" }} />
+        <div />
+        <h1
+          style={{
+            fontFamily: "Inter",
+            fontSize: "22px",
+            color: "#1976D2",
+            marginBottom: "1rem",
+          }}
+        >
+          {/* Eu sou: */}
+        </h1>
+
         <NavbarCadastro userType={userType} setUserType={setUserType} />
-        <div style={{ marginTop: "3rem" }} />
+        <div style={{ marginTop: "2rem" }} />
         <h1 className={styles.cadastrarText}>
           Cadastrar como {getUserTypeName(userType)}
         </h1>
@@ -116,7 +127,7 @@ export default function SignUpPage() {
         )}
         <form
           onSubmit={handleSubmit(onSubmit)}
-          style={{ width: "100%", maxWidth: 400, marginTop: "1rem" }}
+          style={{ width: "100%", maxWidth: 400 }}
         >
           <FormInputField
             className={styles.inputField}
@@ -201,14 +212,13 @@ export default function SignUpPage() {
             />
           )}
           <Button
-            className={styles.buttonCadastrar}
+            className={styles.buttonSubmit}
             type="submit"
             fullWidth
             variant="contained"
           >
             Cadastrar
           </Button>
-          <br/>
           <Link href="/" passHref>
             <Button
               className={styles.buttonSubmit}

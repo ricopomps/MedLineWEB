@@ -8,7 +8,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import mediline from "../../../../public/mediline.svg";
+import mediline from "../../../../public//images/medline_transparente.svg";
 
 interface QueuePageProps {
   params: { code: string };
@@ -43,8 +43,8 @@ export default async function QueuePage({ params: { code } }: QueuePageProps) {
     <Container
       component="main"
       style={{
-        backgroundColor: "#FFF7D3",
-        height: "100vh",
+        backgroundColor: "#f0f0f0",
+        height: "80vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -58,20 +58,18 @@ export default async function QueuePage({ params: { code } }: QueuePageProps) {
         }}
       >
         <Link href="/home">
-          <IconButton aria-label="back" size="large">
+          <IconButton
+            aria-label="back"
+            size="large"
+            style={{ fontFamily: "Inter", color: "black" }}
+          >
             <ArrowBackIcon /> voltar
           </IconButton>
         </Link>
       </div>
-      <Image
-        src={mediline}
-        alt="mediline"
-        width={300}
-        height={150}
-        layout="responsive"
-      />
+      <Image src={mediline} alt="mediline" width={450} height={140} />
       <Box marginBottom={8} marginTop={10}>
-        <Typography variant="h4">
+        <Typography variant="h4" style={{ fontFamily: "inter" }}>
           <strong>Código da fila:</strong> {queue.code}
         </Typography>
       </Box>

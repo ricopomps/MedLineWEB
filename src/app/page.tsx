@@ -47,13 +47,13 @@ export default function Home() {
       {errorText && <Alert severity="error">{errorText}</Alert>}
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.main}>
-          <div style={{ marginTop: "-20px" }}>
+          <div>
             <Image
-              src="/images/titulo_MedLine.png"
+              className={styles.logoMobile}
+              src="/images/medline_transparente.svg"
               alt="MedLine Logo"
-              width={435}
-              height={140}
-              layout="responsive"
+              width={450}
+              height={150}
             />
           </div>
           <FormInputField
@@ -76,7 +76,12 @@ export default function Home() {
             type="password"
           />
 
-          <Button type="submit" variant="contained" color="primary">
+          <Button
+            className={styles.buttonSubmit}
+            type="submit"
+            variant="contained"
+            color="primary"
+          >
             Entrar
           </Button>
           <span className={styles.newClient}>

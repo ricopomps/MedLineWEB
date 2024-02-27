@@ -18,6 +18,8 @@ import Typography from "@mui/material/Typography";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import Image from "next/image";
+import styles from "./navbar.module.css";
 
 //const pages = [''];
 const settings = ["Perfil", "Minha conta", "Dashboard"];
@@ -58,87 +60,70 @@ export default function Navbar() {
   const theme = useTheme();
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
+            {user && user.userType === UsersApi.UserType.recepcionista && (
+              <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleOpenNavMenu}
+                  color="inherit"
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorElNav}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
+                  }}
+                  open={Boolean(anchorElNav)}
+                  onClose={handleCloseNavMenu}
+                  sx={{
+                    display: { xs: "block", md: "none" },
+                  }}
+                >
+                  <Link href={"/home/clinic"}>
+                    <MenuItem>
+                      <Typography textAlign="center">Clínica</Typography>
+                    </MenuItem>
+                  </Link>
+                </Menu>
+              </Box>
+            )}
           <Link href="/home">
-            <Typography
-              variant="h6"
-              noWrap
-              sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              MedLine
-            </Typography>
+            <Image
+              className={styles.logo}
+              src="/images/medline_transparente_branco.png"
+              alt="MedLine"
+              width={170}
+              height={50}
+            />
           </Link>
 
-          {user && user.userType === UsersApi.UserType.recepcionista && (
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit"
-              >
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{
-                  display: { xs: "block", md: "none" },
-                }}
-              >
-                <Link href={"/home/clinic"}>
-                  <MenuItem>
-                    <Typography textAlign="center">Clínica</Typography>
-                  </MenuItem>
-                </Link>
-              </Menu>
-            </Box>
-          )}
-          <Link href="/home">
-            <Typography
-              variant="h5"
-              noWrap
-              sx={{
-                mr: 2,
-                display: { xs: "flex", md: "none" },
-                flexGrow: 1,
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              MedLine
-            </Typography>
-          </Link>
+          <Link href="/home"></Link>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Link href={"/home/clinic"}>
               {user && user?.userType === UsersApi.UserType.recepcionista && (
-                <Button sx={{ my: 2, color: "white", display: "block" }}>
+                <Button
+                  sx={{
+                    my: 2,
+                    color: "white",
+                    display: "block",
+                    fontFamily: "Inter",
+                    fontSize: "1rem",
+                  }}
+                >
                   Clínica
                 </Button>
               )}
@@ -152,7 +137,9 @@ export default function Navbar() {
                 onClick={handleOpenUserMenu}
                 sx={{ p: 0 }}
               >
-                <Typography color="white">Olá, {user?.name}</Typography>
+                <Typography color="white" fontFamily="Inter">
+                  Olá, {user?.name}
+                </Typography>
 
                 {user && user.userType === UsersApi.UserType.doctor && (
                   <Avatar
