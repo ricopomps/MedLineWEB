@@ -11,6 +11,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import { Box, Container, Typography } from "@mui/material";
 import Link from "next/link";
 import { useContext } from "react";
+import styles from "./homePage.module.css";
 
 export default function HomePage() {
   const { user } = useAuthenticatedUser();
@@ -34,6 +35,7 @@ export default function HomePage() {
         variant="h2"
         fontFamily="sans-serif"
         style={{ fontFamily: "Inter", color: "#1976d2" }}
+        className={styles.title}
       >
         <strong>
           {user?.userType === UserType.patient && "Página do paciente"}
@@ -42,25 +44,8 @@ export default function HomePage() {
             "Página do Recepcionista"}
         </strong>
       </Typography>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(1, 1fr)",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <div
-          style={{
-            gridColumnStart: "1",
-            gridColumnEnd: "2",
-            marginRight: "5em",
-            backgroundColor: "#dbdbdb",
-            borderRadius: "10px",
-            padding: "20px",
-          }}
-        >
+      <div className={styles.gridFlex}>
+        <div className={styles.itemFlex1}>
           <Box paddingX={2} marginBottom={2} textAlign="center"></Box>
 
           {user?.userType === UserType.patient && (
@@ -92,17 +77,7 @@ export default function HomePage() {
             </Box>
           </Box>
         </div>
-        <div
-          style={{
-            gridColumnStart: "2",
-            gridColumnEnd: "3",
-            marginLeft: "5em",
-            marginTop: "4em",
-            backgroundColor: "#dbdbdb",
-            borderRadius: "10px",
-            padding: "0 20px 20px 20px",
-          }}
-        >
+        <div className={styles.itemFlex2}>
           {user && (
             <Box marginTop={4}>
               <Typography variant="h4">Dados do usuário:</Typography>

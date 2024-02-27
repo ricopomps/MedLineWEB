@@ -19,6 +19,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 import Image from "next/image";
+import styles from "./navbar.module.css";
 
 //const pages = [''];
 const settings = ["Perfil", "Minha conta", "Dashboard"];
@@ -64,6 +65,7 @@ export default function Navbar() {
         <Toolbar disableGutters>
           <Link href="/home">
             <Image
+              className={styles.logo}
               src="/images/medline_transparente_branco.png"
               alt="MedLine"
               width={170}
@@ -113,7 +115,15 @@ export default function Navbar() {
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Link href={"/home/clinic"}>
               {user && user?.userType === UsersApi.UserType.recepcionista && (
-                <Button sx={{ my: 2, color: "white", display: "block" }}>
+                <Button
+                  sx={{
+                    my: 2,
+                    color: "white",
+                    display: "block",
+                    fontFamily: "Inter",
+                    fontSize: "1rem",
+                  }}
+                >
                   Clínica
                 </Button>
               )}

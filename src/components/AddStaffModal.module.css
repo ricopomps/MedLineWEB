@@ -1,0 +1,27 @@
+.modal {
+  position: absolute as absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 40%;
+  height: 20%;
+  z-index: 1000;
+  border-radius: 25px;
+}
+
+.button {
+  background-color: #7fa2df;
+  color: white;
+  margin: 2em;
+}
+
+.button:hover {
+  background-color: #0d429e;
+}
+
+@media screen and (max-width: 600px) {
+  .modal {
+    width: 60%;
+    height: 25%;
+  }
+}

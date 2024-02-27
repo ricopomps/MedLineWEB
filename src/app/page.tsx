@@ -49,6 +49,7 @@ export default function Home() {
         <div className={styles.main}>
           <div>
             <Image
+              className={styles.logoMobile}
               src="/images/medline_transparente.svg"
               alt="MedLine Logo"
               width={450}

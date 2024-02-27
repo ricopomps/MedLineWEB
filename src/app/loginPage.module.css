@@ -36,3 +36,10 @@
   align-items: center;
   justify-content: center;
 }
+
+@media (max-width: 768px) {
+  .logoMobile {
+    height: 100px;
+    width: 340px;
+  }
+}

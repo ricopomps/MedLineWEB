@@ -7,7 +7,7 @@ export default function TelaCadastroPaciente() {
   return (
     <Container
       style={{
-        backgroundColor: "#FFF7D3",
+        backgroundColor: "#F0F0F0",
         height: "100vh",
         display: "flex",
         flexDirection: "column",
