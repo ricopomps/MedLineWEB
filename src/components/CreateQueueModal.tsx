@@ -11,8 +11,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import UserSelector from "./UserSelector";
 import styles from "./AddStaffModal.module.css";
+import UserSelector from "./UserSelector";
 
 const style = {
   position: "absolute" as "absolute",
@@ -88,6 +88,7 @@ export default function CreateQueueModal({
               fullWidth
               autoFocus
               userType={UserType.doctor}
+              clinicDocument={clinicDocument}
             />
             <Button
               type="submit"
